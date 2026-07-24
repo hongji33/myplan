@@ -311,6 +311,7 @@
   .nav button.on .ni{filter:none;opacity:1;transform:translateY(-2px) scale(1.12);}
 
   /* toast */
+  .ver-tag{position:absolute;right:12px;bottom:84px;font-size:10px;color:rgba(150,120,90,.5);z-index:2;pointer-events:none;}
   .toast{
     position:absolute;left:50%;top:70px;transform:translateX(-50%) translateY(-20px);
     background:rgba(107,91,78,.95);color:#fff;padding:11px 18px;border-radius:18px;font-size:14px;
@@ -1003,6 +1004,7 @@
     <button data-v="report" onclick="go('report',this)"><span class="ni">📊</span>리포트</button>
   </nav>
 
+  <div class="ver-tag">v1.4</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
