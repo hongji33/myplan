@@ -1004,7 +1004,7 @@
     <button data-v="report" onclick="go('report',this)"><span class="ni">📊</span>리포트</button>
   </nav>
 
-  <div class="ver-tag">v1.4</div>
+  <div class="ver-tag">v1.5</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -1556,6 +1556,8 @@ document.addEventListener('visibilitychange', function(){ if(document.hidden) sa
 var deferredPrompt=null;
 function isStandalone(){ try{ return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone===true; }catch(e){ return false; } }
 function isiOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent||''); }
+function inAppBrowser(){ var u=(navigator.userAgent||''); return /KAKAOTALK|Instagram|FBAN|FBAV|FB_IAB|Line\/|NAVER|DaumApps|Band|Snapchat/i.test(u); }
+function isSafari(){ var u=navigator.userAgent||''; return isiOS() && /Safari/i.test(u) && !/CriOS|FxiOS|EdgiOS|Whale/i.test(u); }
 function showInstallBtn(){ if(!isStandalone()){ var r=document.getElementById('installRow'); if(r) r.style.display='block'; } }
 window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt=e; showInstallBtn(); });
 window.addEventListener('appinstalled', function(){ var r=document.getElementById('installRow'); if(r) r.style.display='none'; deferredPrompt=null; toast('설치 완료! 홈 화면에서 열어보세요 🎉'); });
@@ -1564,14 +1566,20 @@ function installApp(){
   else { showInstallHelp(); }
 }
 function showInstallHelp(){
-  var t = isiOS()
-   ? '<b>아이폰 🍎</b><br>1) 이 페이지를 <b>사파리</b>로 열어요.<br>2) 아래 가운데 <b>공유 버튼(⬆️)</b>을 눌러요.<br>3) <b>‘홈 화면에 추가’</b>를 눌러요.<br>4) 오른쪽 위 <b>‘추가’</b>를 누르면 끝!<br><br>바탕화면에 코알라 아이콘이 생겨요 🐨'
-   : '<b>안드로이드 🤖</b><br>1) 크롬 오른쪽 위 <b>⋮ 메뉴</b>를 눌러요.<br>2) <b>‘앱 설치’</b> 또는 <b>‘홈 화면에 추가’</b>를 눌러요.<br>3) <b>‘설치’</b>를 누르면 끝!<br><br>바탕화면에 코알라 아이콘이 생겨요 🐨';
-  document.getElementById('installHelpText').innerHTML=t;
+  var head='';
+  if(inAppBrowser()){
+    head='⚠️ 지금 <b>카톡·인스타 같은 앱 안의 브라우저</b>로 열려 있어요. 여기선 설치가 안 돼요.<br>화면 오른쪽 위(또는 아래)의 <b>⋯ 버튼 → ‘다른 브라우저로 열기’</b>를 눌러, 아이폰은 <b>사파리</b> / 안드로이드는 <b>크롬</b>으로 먼저 열어주세요!<br><br>';
+  } else if(isiOS() && !isSafari()){
+    head='⚠️ 아이폰은 <b>사파리(Safari)</b>에서만 설치돼요. 이 링크를 사파리로 열어주세요.<br><br>';
+  }
+  var body = isiOS()
+   ? '<b>아이폰 🍎</b><br>1) <b>사파리</b>로 이 페이지를 열어요.<br>2) 아래 가운데 <b>공유 버튼(⬆️)</b>을 눌러요.<br>3) 목록을 내려 <b>‘홈 화면에 추가’</b>를 눌러요.<br>4) 오른쪽 위 <b>‘추가’</b>!'
+   : '<b>안드로이드 🤖</b><br>1) <b>크롬</b>으로 이 페이지를 열어요.<br>2) 오른쪽 위 <b>⋮ 메뉴</b>를 눌러요.<br>3) <b>‘앱 설치’</b> 또는 <b>‘홈 화면에 추가’</b>를 눌러요.';
+  document.getElementById('installHelpText').innerHTML = head + body + '<br><br>바탕화면에 코알라 아이콘이 생겨요 🐨';
   document.getElementById('installPop').classList.add('show');
 }
 function closeInstallHelp(){ document.getElementById('installPop').classList.remove('show'); }
-if(isiOS() && !isStandalone()) showInstallBtn();
+if(!isStandalone()) showInstallBtn();
 
 // init
 load();
