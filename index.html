@@ -1512,12 +1512,15 @@ function unlockDex(key){
 
 // ---------- save / load (각자 폰에 자기 진행상황 저장) ----------
 var SAVE_KEY='dreampet_save_v1';
+var _newDay=false;
+function todayKey(){ var d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
 function save(){
   try{ localStorage.setItem(SAVE_KEY, JSON.stringify({
     state:state, petName:petName, houseLevel:houseLevel, buddyKey:buddyKey,
     owned:Array.from(ownedItems), gifts:Array.from(townGifts),
     nest:nest, hatched:Array.from(hatched), residents:townResidents,
-    plansDone:plans.map(function(p){return p.done;})
+    plansDone:plans.map(function(p){return p.done;}),
+    lastDay:todayKey()
   })); }catch(e){}
 }
 function load(){
@@ -1534,6 +1537,12 @@ function load(){
     if(d.hatched) hatched=new Set(d.hatched);
     if(d.residents) townResidents=d.residents;
     if(d.plansDone) plans.forEach(function(p,i){ if(typeof d.plansDone[i]==='boolean') p.done=d.plansDone[i]; });
+    // 날짜가 바뀌면 오늘의 꿈 리스트만 초기화 (동물·보석 등은 유지)
+    if(d.lastDay && d.lastDay!==todayKey()){
+      plans.forEach(function(p){ p.done=false; });
+      state.days=(state.days||5)+1;
+      _newDay=true;
+    }
   }catch(e){}
 }
 // autosave: 주기적으로 + 앱을 닫거나 숨길 때
@@ -1568,6 +1577,7 @@ renderPlans(); paint(); money(); updateExp(); renderChart();
 buildOverlay(); setHouse(); renderTray(); renderShop(); renderNest();
 setBuddy(); renderTownAnimals(); renderTownGifts(); updateLevel(); renderMood();
 hatched.forEach(function(k){ unlockDex(k); });
+if(_newDay) setTimeout(function(){ toast('새로운 하루예요! 🌅 오늘의 꿈 리스트가 새로 시작됐어요'); }, 700);
 
 // register service worker (앱 설치 + 오프라인 실행) — only works over http/https, not local file
 if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
