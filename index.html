@@ -161,7 +161,13 @@
     border-radius:16px;padding:10px;font-family:inherit;font-size:14px;cursor:pointer;margin-top:4px;}
   .p-del{border:none;background:none;color:#D9CBBB;font-size:15px;cursor:pointer;padding:4px 4px 4px 8px;flex-shrink:0;align-self:center;}
   .p-del:active{color:#E8788A;}
-  .p-fix{font-size:12px;opacity:.5;padding:4px 4px 4px 8px;flex-shrink:0;align-self:center;}
+  .p-fix{font-size:13px;opacity:.7;padding:4px 4px 4px 8px;flex-shrink:0;align-self:center;}
+  .p-acts{display:flex;gap:3px;flex-shrink:0;align-self:center;}
+  .p-act{border:none;background:#F1E9DE;border-radius:11px;font-size:15px;cursor:pointer;padding:6px 7px;line-height:1;}
+  .p-act.on{background:#FFDFA6;}
+  .p-act.del{background:#FBE0E0;}
+  .p-act:active{transform:scale(.9);}
+  .plan.editing{background:#FEFBF6;}
   .chip-wrap{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;}
   .chip-wrap .chip{border:2px solid #EADFCF;background:var(--white);border-radius:14px;padding:7px 12px;
     font-family:inherit;font-size:13px;color:var(--ink);cursor:pointer;transition:all .12s;}
@@ -751,7 +757,10 @@
         </div>
       </div>
 
-      <div class="section-title">📋 오늘의 꿈 리스트</div>
+      <div class="section-title" style="justify-content:space-between">
+        <span>📋 오늘의 꿈 리스트</span>
+        <button class="edit-btn" id="editToggle" onclick="toggleEdit()">✏️ 편집</button>
+      </div>
       <div class="card" id="planCard"></div>
     </section>
 
@@ -1017,7 +1026,7 @@
     <button data-v="report" onclick="go('report',this)"><span class="ni">📊</span>리포트</button>
   </nav>
 
-  <div class="ver-tag">v1.7</div>
+  <div class="ver-tag">v1.8</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -1042,7 +1051,7 @@
   <div class="reward-pop" id="addPop" onclick="closeAddPlan()">
     <div class="reward-card" onclick="event.stopPropagation()">
       <div style="font-size:40px" class="big">✏️</div>
-      <div style="font-size:17px;margin:4px 0 10px">새로운 꿈 추가하기</div>
+      <div style="font-size:17px;margin:4px 0 10px" id="addPopTitle">새로운 꿈 추가하기</div>
       <input class="name-input" id="planInput" maxlength="30" placeholder="예: 수학 문제집 2쪽 풀기">
       <div style="font-size:12px;color:#9A897B;text-align:left;margin:8px 2px 5px">종류를 골라요</div>
       <div class="chip-wrap" id="catRow"></div>
@@ -1050,7 +1059,7 @@
       <div class="chip-wrap" id="pomoRow"></div>
       <div class="btn-row" style="margin-top:14px">
         <button class="btn ghost small" onclick="closeAddPlan()">취소</button>
-        <button class="btn go small" onclick="addPlan()">추가하기 ✨</button>
+        <button class="btn go small" id="addPopBtn" onclick="savePlan()">추가하기 ✨</button>
       </div>
     </div>
   </div>
@@ -1092,12 +1101,28 @@ function go(v,el){
 function money(){ document.getElementById('gemCount').textContent=state.gems;
   document.getElementById('rareCount').textContent=state.rare; }
 function esc(s){ return String(s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];}); }
+var editMode=false;
+function sortPlans(){ plans.sort(function(a,b){ return (b.fixed?1:0)-(a.fixed?1:0); }); }
+function toggleEdit(){ editMode=!editMode;
+  var b=document.getElementById('editToggle'); if(b) b.textContent=editMode?'✓ 완료':'✏️ 편집';
+  renderPlans();
+}
 function renderPlans(){
   var c=document.getElementById('planCard'); c.innerHTML='';
   plans.forEach(function(p,i){
-    var d=document.createElement('div'); d.className='plan'+(p.done?' done':'');
-    var right = p.fixed ? '<span class="p-fix" title="고정 계획">📌</span>' : '<button class="p-del" onclick="delPlan('+i+')" title="삭제">✕</button>';
-    d.innerHTML='<div class="check" onclick="togglePlan('+i+')">'+(p.done?'✓':'')+'</div>'+
+    var d=document.createElement('div'); d.className='plan'+(p.done?' done':'')+(editMode?' editing':'');
+    var left, right;
+    if(editMode){
+      left='';
+      right='<div class="p-acts">'+
+        '<button class="p-act'+(p.fixed?' on':'')+'" onclick="togglePin('+i+')" title="고정">📌</button>'+
+        '<button class="p-act" onclick="editPlan('+i+')" title="수정">✏️</button>'+
+        '<button class="p-act del" onclick="delPlan('+i+')" title="삭제">🗑️</button></div>';
+    } else {
+      left='<div class="check" onclick="togglePlan('+i+')">'+(p.done?'✓':'')+'</div>';
+      right = p.fixed ? '<span class="p-fix" title="고정된 계획">📌</span>' : '';
+    }
+    d.innerHTML=left+
       '<div class="p-body"><div class="p-title">'+esc(p.t)+'</div>'+
       '<div class="p-meta"><span class="cat" style="background:'+p.color+'">'+p.emoji+' '+esc(p.cat)+'</span>🍅 x'+p.pomo+'</div></div>'+
       right;
@@ -1107,7 +1132,11 @@ function renderPlans(){
   add.onclick=openAddPlan;
   c.appendChild(add);
 }
-function delPlan(i){ if(!plans[i]||plans[i].fixed) return; plans.splice(i,1); renderPlans(); save(); toast('꿈을 삭제했어요'); }
+function delPlan(i){ if(!plans[i]) return; plans.splice(i,1); renderPlans(); save(); toast('꿈을 삭제했어요'); }
+function togglePin(i){ var p=plans[i]; if(!p) return; p.fixed=!p.fixed;
+  plans.splice(i,1); if(p.fixed) plans.unshift(p); else plans.push(p);
+  sortPlans(); renderPlans(); save();
+  toast(p.fixed?'📌 맨 위에 고정했어요 (매일 반복)':'고정을 해제했어요'); }
 // 새 꿈(계획) 추가
 var CATS=[
   {cat:'공부', emoji:'📝', color:'#D8ECFB'},
@@ -1123,19 +1152,38 @@ function renderCatRow(){ var r=document.getElementById('catRow'); r.innerHTML=''
 function renderPomoRow(){ var r=document.getElementById('pomoRow'); r.innerHTML='';
   [1,2,3,4].forEach(function(n){ var el=document.createElement('div'); el.className='chip'+(n===newPomo?' on':'');
     el.textContent='🍅 × '+n; el.onclick=function(){ newPomo=n; renderPomoRow(); }; r.appendChild(el); }); }
+var editingIdx=-1;
 function openAddPlan(){
+  editingIdx=-1;
+  document.getElementById('addPopTitle').textContent='새로운 꿈 추가하기';
+  document.getElementById('addPopBtn').textContent='추가하기 ✨';
   document.getElementById('planInput').value=''; newCatIdx=0; newPomo=1;
   renderCatRow(); renderPomoRow();
   document.getElementById('addPop').classList.add('show');
   setTimeout(function(){ document.getElementById('planInput').focus(); },120);
 }
+function editPlan(i){
+  var p=plans[i]; if(!p) return; editingIdx=i;
+  document.getElementById('addPopTitle').textContent='꿈 수정하기';
+  document.getElementById('addPopBtn').textContent='수정 완료 ✨';
+  document.getElementById('planInput').value=p.t;
+  var ci=CATS.findIndex(function(c){return c.cat===p.cat;}); newCatIdx=ci<0?0:ci; newPomo=p.pomo||1;
+  renderCatRow(); renderPomoRow();
+  document.getElementById('addPop').classList.add('show');
+  setTimeout(function(){ document.getElementById('planInput').focus(); },120);
+}
 function closeAddPlan(){ document.getElementById('addPop').classList.remove('show'); }
-function addPlan(){
+function savePlan(){
   var v=document.getElementById('planInput').value.trim();
   if(!v){ toast('꿈(할 일)을 입력해 주세요 😊'); return; }
   var c=CATS[newCatIdx];
-  plans.push({t:v, cat:c.cat, emoji:c.emoji, color:c.color, pomo:newPomo, done:false});
-  renderPlans(); save(); closeAddPlan(); toast('새로운 꿈을 추가했어요! ✨');
+  if(editingIdx>=0 && plans[editingIdx]){
+    var p=plans[editingIdx]; p.t=v; p.cat=c.cat; p.emoji=c.emoji; p.color=c.color; p.pomo=newPomo;
+    renderPlans(); save(); closeAddPlan(); toast('꿈을 수정했어요! ✏️');
+  } else {
+    plans.push({t:v, cat:c.cat, emoji:c.emoji, color:c.color, pomo:newPomo, done:false, fixed:false});
+    sortPlans(); renderPlans(); save(); closeAddPlan(); toast('새로운 꿈을 추가했어요! ✨');
+  }
 }
 function togglePlan(i){
   plans[i].done=!plans[i].done; renderPlans();
@@ -1602,13 +1650,9 @@ function load(){
     if(d.nest) nest=d.nest;
     if(d.hatched) hatched=new Set(d.hatched);
     if(d.residents) townResidents=d.residents;
-    if(Array.isArray(d.plans) && d.plans.length){
-      var fresh=freshDefaults(), byT={};
-      d.plans.forEach(function(p){ byT[p.t]=p; });
-      fresh.forEach(function(p){ if(byT[p.t] && typeof byT[p.t].done==='boolean') p.done=byT[p.t].done; });
-      var customs=d.plans.filter(function(p){ return !p.fixed; }).map(function(p){
-        return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:false,done:!!p.done}; });
-      plans=fresh.concat(customs);
+    if(Array.isArray(d.plans)){
+      plans=d.plans.map(function(p){ return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:!!p.fixed,done:!!p.done}; });
+      sortPlans();
     }
     else if(d.plansDone) plans.forEach(function(p,i){ if(typeof d.plansDone[i]==='boolean') p.done=d.plansDone[i]; });
     // 날짜가 바뀌면 오늘의 꿈 리스트만 초기화 (동물·보석 등은 유지)
@@ -1654,7 +1698,7 @@ function closeInstallHelp(){ document.getElementById('installPop').classList.rem
 if(!isStandalone()) showInstallBtn();
 
 // init
-load();
+load(); sortPlans();
 renderPlans(); paint(); money(); updateExp(); renderChart();
 buildOverlay(); setHouse(); renderTray(); renderShop(); renderNest();
 setBuddy(); renderTownAnimals(); renderTownGifts(); updateLevel(); renderMood();
