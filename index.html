@@ -159,6 +159,13 @@
   .cat{font-size:11px;padding:2px 8px;border-radius:12px;margin-right:5px;}
   .add-plan{width:100%;border:2px dashed #E7D9C7;background:#FDF7EF;color:var(--ink-soft);
     border-radius:16px;padding:10px;font-family:inherit;font-size:14px;cursor:pointer;margin-top:4px;}
+  .p-del{border:none;background:none;color:#D9CBBB;font-size:15px;cursor:pointer;padding:4px 4px 4px 8px;flex-shrink:0;align-self:center;}
+  .p-del:active{color:#E8788A;}
+  .p-fix{font-size:12px;opacity:.5;padding:4px 4px 4px 8px;flex-shrink:0;align-self:center;}
+  .chip-wrap{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;}
+  .chip-wrap .chip{border:2px solid #EADFCF;background:var(--white);border-radius:14px;padding:7px 12px;
+    font-family:inherit;font-size:13px;color:var(--ink);cursor:pointer;transition:all .12s;}
+  .chip-wrap .chip.on{background:#D9F0E2;border-color:#9BE0B8;}
 
   /* koala full-body character */
   .koala{display:inline-block;overflow:visible;}
@@ -329,16 +336,18 @@
 <body>
 <!-- reusable koala character -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="koala" viewBox="0 0 100 118">
+  <symbol id="koala" viewBox="-8 0 116 118">
     <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round">
       <ellipse cx="50" cy="99" rx="23" ry="16" fill="#AEB6C2"/>
-      <circle cx="18" cy="42" r="15" fill="#AEB6C2"/><circle cx="82" cy="42" r="15" fill="#AEB6C2"/>
+      <circle cx="14" cy="48" r="20" fill="#AEB6C2"/><circle cx="86" cy="48" r="20" fill="#AEB6C2"/>
+    </g>
+    <circle cx="13" cy="48" r="10.5" fill="#F2C8D4"/><circle cx="87" cy="48" r="10.5" fill="#F2C8D4"/>
+    <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round">
       <ellipse cx="50" cy="53" rx="44" ry="36" fill="#B7BEC9"/>
     </g>
     <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round"><ellipse cx="27" cy="96" rx="7" ry="9.5" fill="#A6AEBB"/><ellipse cx="73" cy="96" rx="7" ry="9.5" fill="#A6AEBB"/></g>
     <ellipse cx="50" cy="103" rx="13" ry="9.5" fill="#CDD4DC"/>
     <g stroke="#6E6157" stroke-width="2.5"><ellipse cx="41" cy="113" rx="6.5" ry="4.5" fill="#9DA6B4"/><ellipse cx="59" cy="113" rx="6.5" ry="4.5" fill="#9DA6B4"/></g>
-    <circle cx="18" cy="42" r="7.5" fill="#F2C8D4"/><circle cx="82" cy="42" r="7.5" fill="#F2C8D4"/>
     <ellipse cx="26" cy="64" rx="8.5" ry="6" fill="#F4AEBD"/><ellipse cx="74" cy="64" rx="8.5" ry="6" fill="#F4AEBD"/>
     <circle cx="37" cy="53" r="4.8" fill="#4A4038"/><circle cx="63" cy="53" r="4.8" fill="#4A4038"/>
     <circle cx="38.6" cy="51.2" r="1.6" fill="#fff"/><circle cx="64.6" cy="51.2" r="1.6" fill="#fff"/>
@@ -346,32 +355,36 @@
     <path d="M50 72 q-4 4 -8.5 1.5" stroke="#6E6157" stroke-width="2.2" fill="none" stroke-linecap="round"/>
     <path d="M50 72 q4 4 8.5 1.5" stroke="#6E6157" stroke-width="2.2" fill="none" stroke-linecap="round"/>
   </symbol>
-  <symbol id="koala-happy" viewBox="0 0 100 118">
+  <symbol id="koala-happy" viewBox="-8 0 116 118">
     <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round">
       <ellipse cx="50" cy="99" rx="23" ry="16" fill="#AEB6C2"/>
-      <circle cx="18" cy="42" r="15" fill="#AEB6C2"/><circle cx="82" cy="42" r="15" fill="#AEB6C2"/>
+      <circle cx="14" cy="48" r="20" fill="#AEB6C2"/><circle cx="86" cy="48" r="20" fill="#AEB6C2"/>
+    </g>
+    <circle cx="13" cy="48" r="10.5" fill="#F2C8D4"/><circle cx="87" cy="48" r="10.5" fill="#F2C8D4"/>
+    <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round">
       <ellipse cx="50" cy="53" rx="44" ry="36" fill="#B7BEC9"/>
     </g>
     <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round"><ellipse cx="27" cy="96" rx="7" ry="9.5" fill="#A6AEBB"/><ellipse cx="73" cy="96" rx="7" ry="9.5" fill="#A6AEBB"/></g>
     <ellipse cx="50" cy="103" rx="13" ry="9.5" fill="#CDD4DC"/>
     <g stroke="#6E6157" stroke-width="2.5"><ellipse cx="41" cy="113" rx="6.5" ry="4.5" fill="#9DA6B4"/><ellipse cx="59" cy="113" rx="6.5" ry="4.5" fill="#9DA6B4"/></g>
-    <circle cx="18" cy="42" r="7.5" fill="#F2C8D4"/><circle cx="82" cy="42" r="7.5" fill="#F2C8D4"/>
     <ellipse cx="25" cy="65" rx="9.5" ry="7" fill="#F492A8"/><ellipse cx="75" cy="65" rx="9.5" ry="7" fill="#F492A8"/>
     <path d="M31 56 Q37 48 43 56" stroke="#4A4038" stroke-width="3.2" fill="none" stroke-linecap="round"/>
     <path d="M57 56 Q63 48 69 56" stroke="#4A4038" stroke-width="3.2" fill="none" stroke-linecap="round"/>
     <path d="M50 58 C43 58 41 66 46 70 Q50 72 54 70 C59 66 57 58 50 58 Z" fill="#6E6157"/>
     <path d="M39 71 Q50 83 61 71 Q50 76 39 71 Z" fill="#B5726B"/>
   </symbol>
-  <symbol id="koala-sleep" viewBox="0 0 100 118">
+  <symbol id="koala-sleep" viewBox="-8 0 116 118">
     <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round">
       <ellipse cx="50" cy="99" rx="23" ry="16" fill="#AEB6C2"/>
-      <circle cx="18" cy="42" r="15" fill="#AEB6C2"/><circle cx="82" cy="42" r="15" fill="#AEB6C2"/>
+      <circle cx="14" cy="48" r="20" fill="#AEB6C2"/><circle cx="86" cy="48" r="20" fill="#AEB6C2"/>
+    </g>
+    <circle cx="13" cy="48" r="10.5" fill="#F2C8D4"/><circle cx="87" cy="48" r="10.5" fill="#F2C8D4"/>
+    <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round">
       <ellipse cx="50" cy="53" rx="44" ry="36" fill="#B7BEC9"/>
     </g>
     <g stroke="#6E6157" stroke-width="3" stroke-linejoin="round"><ellipse cx="27" cy="96" rx="7" ry="9.5" fill="#A6AEBB"/><ellipse cx="73" cy="96" rx="7" ry="9.5" fill="#A6AEBB"/></g>
     <ellipse cx="50" cy="103" rx="13" ry="9.5" fill="#CDD4DC"/>
     <g stroke="#6E6157" stroke-width="2.5"><ellipse cx="41" cy="113" rx="6.5" ry="4.5" fill="#9DA6B4"/><ellipse cx="59" cy="113" rx="6.5" ry="4.5" fill="#9DA6B4"/></g>
-    <circle cx="18" cy="42" r="7.5" fill="#F2C8D4"/><circle cx="82" cy="42" r="7.5" fill="#F2C8D4"/>
     <ellipse cx="26" cy="64" rx="8.5" ry="6" fill="#F4AEBD"/><ellipse cx="74" cy="64" rx="8.5" ry="6" fill="#F4AEBD"/>
     <path d="M31 53 Q37 59 43 53" stroke="#4A4038" stroke-width="3" fill="none" stroke-linecap="round"/>
     <path d="M57 53 Q63 59 69 53" stroke="#4A4038" stroke-width="3" fill="none" stroke-linecap="round"/>
@@ -1004,7 +1017,7 @@
     <button data-v="report" onclick="go('report',this)"><span class="ni">📊</span>리포트</button>
   </nav>
 
-  <div class="ver-tag">v1.5</div>
+  <div class="ver-tag">v1.7</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -1026,6 +1039,21 @@
       <button class="btn go" style="margin-top:14px;width:100%" onclick="event.stopPropagation();closeInstallHelp()">알겠어요 👍</button>
     </div>
   </div>
+  <div class="reward-pop" id="addPop" onclick="closeAddPlan()">
+    <div class="reward-card" onclick="event.stopPropagation()">
+      <div style="font-size:40px" class="big">✏️</div>
+      <div style="font-size:17px;margin:4px 0 10px">새로운 꿈 추가하기</div>
+      <input class="name-input" id="planInput" maxlength="30" placeholder="예: 수학 문제집 2쪽 풀기">
+      <div style="font-size:12px;color:#9A897B;text-align:left;margin:8px 2px 5px">종류를 골라요</div>
+      <div class="chip-wrap" id="catRow"></div>
+      <div style="font-size:12px;color:#9A897B;text-align:left;margin:12px 2px 5px">집중 횟수 (🍅 25분씩)</div>
+      <div class="chip-wrap" id="pomoRow"></div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn ghost small" onclick="closeAddPlan()">취소</button>
+        <button class="btn go small" onclick="addPlan()">추가하기 ✨</button>
+      </div>
+    </div>
+  </div>
   <div class="reward-pop" id="rewardPop" onclick="closeReward()">
     <div class="reward-card">
       <div class="big" id="rewardIc">💎</div>
@@ -1039,13 +1067,16 @@
 <script>
 // ---------- state ----------
 var state = { gems:120, rare:2, exp:60, feed:3, level:3, days:5 };
-var plans = [
-  {t:"수학 문제집 2쪽 풀기", cat:"공부", emoji:"📝", color:"#D8ECFB", pomo:2, done:false},
-  {t:"영어 단어 20개 외우기", cat:"공부", emoji:"📝", color:"#D8ECFB", pomo:1, done:true},
-  {t:"좋아하는 책 30분 읽기", cat:"독서", emoji:"📖", color:"#FFF1C9", pomo:1, done:false},
-  {t:"줄넘기 100개 하기", cat:"운동", emoji:"🏃", color:"#D6F0E0", pomo:1, done:false},
-  {t:"(어제 못한) 오답노트 정리", cat:"보완 미션", emoji:"⭐", color:"#FFE0EC", pomo:1, done:false, bonus:true},
+// 기본(고정) 계획 — 삭제되지 않고 매일 반복되며, 새 날엔 체크만 풀려요
+var DEFAULT_PLANS = [
+  {t:"수학 문제집 2쪽 풀기", cat:"공부", emoji:"📝", color:"#D8ECFB", pomo:2, fixed:true},
+  {t:"영어 단어 20개 외우기", cat:"공부", emoji:"📝", color:"#D8ECFB", pomo:1, fixed:true},
+  {t:"좋아하는 책 30분 읽기", cat:"독서", emoji:"📖", color:"#FFF1C9", pomo:1, fixed:true},
+  {t:"줄넘기 100개 하기", cat:"운동", emoji:"🏃", color:"#D6F0E0", pomo:1, fixed:true},
+  {t:"(어제 못한) 오답노트 정리", cat:"보완 미션", emoji:"⭐", color:"#FFE0EC", pomo:1, bonus:true, fixed:true},
 ];
+function freshDefaults(){ return DEFAULT_PLANS.map(function(p){ return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:true,done:false}; }); }
+var plans = freshDefaults();
 var speeches = ["주인님, 오늘도 같이 공부해요! 🌱","조금만 더 힘내요, 반짝반짝! ✨","계획 하나 끝내면 보석을 찾아올게요 💎","우리 같이 갓생 살아요! 💪","쉬는 것도 중요해요, 무리 말아요 🍃"];
 
 // ---------- nav ----------
@@ -1060,18 +1091,51 @@ function go(v,el){
 // ---------- render ----------
 function money(){ document.getElementById('gemCount').textContent=state.gems;
   document.getElementById('rareCount').textContent=state.rare; }
+function esc(s){ return String(s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];}); }
 function renderPlans(){
   var c=document.getElementById('planCard'); c.innerHTML='';
   plans.forEach(function(p,i){
     var d=document.createElement('div'); d.className='plan'+(p.done?' done':'');
+    var right = p.fixed ? '<span class="p-fix" title="고정 계획">📌</span>' : '<button class="p-del" onclick="delPlan('+i+')" title="삭제">✕</button>';
     d.innerHTML='<div class="check" onclick="togglePlan('+i+')">'+(p.done?'✓':'')+'</div>'+
-      '<div class="p-body"><div class="p-title">'+p.t+'</div>'+
-      '<div class="p-meta"><span class="cat" style="background:'+p.color+'">'+p.emoji+' '+p.cat+'</span>🍅 x'+p.pomo+'</div></div>';
+      '<div class="p-body"><div class="p-title">'+esc(p.t)+'</div>'+
+      '<div class="p-meta"><span class="cat" style="background:'+p.color+'">'+p.emoji+' '+esc(p.cat)+'</span>🍅 x'+p.pomo+'</div></div>'+
+      right;
     c.appendChild(d);
   });
   var add=document.createElement('button'); add.className='add-plan'; add.textContent='＋ 새로운 꿈 추가하기';
-  add.onclick=function(){ toast('시제품에서는 미리 담긴 계획으로 체험해요 😊'); };
+  add.onclick=openAddPlan;
   c.appendChild(add);
+}
+function delPlan(i){ if(!plans[i]||plans[i].fixed) return; plans.splice(i,1); renderPlans(); save(); toast('꿈을 삭제했어요'); }
+// 새 꿈(계획) 추가
+var CATS=[
+  {cat:'공부', emoji:'📝', color:'#D8ECFB'},
+  {cat:'독서', emoji:'📖', color:'#FFF1C9'},
+  {cat:'운동', emoji:'🏃', color:'#D6F0E0'},
+  {cat:'습관', emoji:'🧹', color:'#E9E1FB'},
+  {cat:'기타', emoji:'⭐', color:'#FFE0EC'}
+];
+var newCatIdx=0, newPomo=1;
+function renderCatRow(){ var r=document.getElementById('catRow'); r.innerHTML='';
+  CATS.forEach(function(c,i){ var el=document.createElement('div'); el.className='chip'+(i===newCatIdx?' on':'');
+    el.textContent=c.emoji+' '+c.cat; el.onclick=function(){ newCatIdx=i; renderCatRow(); }; r.appendChild(el); }); }
+function renderPomoRow(){ var r=document.getElementById('pomoRow'); r.innerHTML='';
+  [1,2,3,4].forEach(function(n){ var el=document.createElement('div'); el.className='chip'+(n===newPomo?' on':'');
+    el.textContent='🍅 × '+n; el.onclick=function(){ newPomo=n; renderPomoRow(); }; r.appendChild(el); }); }
+function openAddPlan(){
+  document.getElementById('planInput').value=''; newCatIdx=0; newPomo=1;
+  renderCatRow(); renderPomoRow();
+  document.getElementById('addPop').classList.add('show');
+  setTimeout(function(){ document.getElementById('planInput').focus(); },120);
+}
+function closeAddPlan(){ document.getElementById('addPop').classList.remove('show'); }
+function addPlan(){
+  var v=document.getElementById('planInput').value.trim();
+  if(!v){ toast('꿈(할 일)을 입력해 주세요 😊'); return; }
+  var c=CATS[newCatIdx];
+  plans.push({t:v, cat:c.cat, emoji:c.emoji, color:c.color, pomo:newPomo, done:false});
+  renderPlans(); save(); closeAddPlan(); toast('새로운 꿈을 추가했어요! ✨');
 }
 function togglePlan(i){
   plans[i].done=!plans[i].done; renderPlans();
@@ -1521,7 +1585,7 @@ function save(){
     state:state, petName:petName, houseLevel:houseLevel, buddyKey:buddyKey,
     owned:Array.from(ownedItems), gifts:Array.from(townGifts),
     nest:nest, hatched:Array.from(hatched), residents:townResidents,
-    plansDone:plans.map(function(p){return p.done;}),
+    plans:plans.map(function(p){return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,done:p.done,bonus:!!p.bonus,fixed:!!p.fixed};}),
     lastDay:todayKey()
   })); }catch(e){}
 }
@@ -1538,7 +1602,15 @@ function load(){
     if(d.nest) nest=d.nest;
     if(d.hatched) hatched=new Set(d.hatched);
     if(d.residents) townResidents=d.residents;
-    if(d.plansDone) plans.forEach(function(p,i){ if(typeof d.plansDone[i]==='boolean') p.done=d.plansDone[i]; });
+    if(Array.isArray(d.plans) && d.plans.length){
+      var fresh=freshDefaults(), byT={};
+      d.plans.forEach(function(p){ byT[p.t]=p; });
+      fresh.forEach(function(p){ if(byT[p.t] && typeof byT[p.t].done==='boolean') p.done=byT[p.t].done; });
+      var customs=d.plans.filter(function(p){ return !p.fixed; }).map(function(p){
+        return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:false,done:!!p.done}; });
+      plans=fresh.concat(customs);
+    }
+    else if(d.plansDone) plans.forEach(function(p,i){ if(typeof d.plansDone[i]==='boolean') p.done=d.plansDone[i]; });
     // 날짜가 바뀌면 오늘의 꿈 리스트만 초기화 (동물·보석 등은 유지)
     if(d.lastDay && d.lastDay!==todayKey()){
       plans.forEach(function(p){ p.done=false; });
