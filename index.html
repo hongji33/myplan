@@ -4,8 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="꿈키우기">
 <meta name="theme-color" content="#FCE7D2">
 <title>나의 꿈 키우기</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-startup-image" href="icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -1492,6 +1499,13 @@ function unlockDex(key){
 renderPlans(); paint(); money(); updateExp(); renderChart();
 buildOverlay(); setHouse(); renderTray(); renderShop(); renderNest();
 setBuddy(); renderTownAnimals(); renderTownGifts(); updateLevel(); renderMood();
+
+// register service worker (앱 설치 + 오프라인 실행) — only works over http/https, not local file
+if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
 </script>
 </script>
 </body>
