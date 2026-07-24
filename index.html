@@ -137,6 +137,10 @@
   .btn.go{background:linear-gradient(180deg,#9BE0B8,#7ECf9f);color:#fff;}
   .btn.ghost{background:var(--lav);}
   .btn.small{padding:7px 13px;font-size:13px;border-radius:14px;}
+  .install-btn{width:100%;border:none;border-radius:18px;padding:13px;font-family:inherit;font-size:15px;
+    background:linear-gradient(180deg,#FFD9A8,#FFC07A);color:#6B5B4E;box-shadow:var(--shadow-sm);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:6px;}
+  .install-btn:active{transform:scale(.97);}
 
   /* plan list */
   .plan{
@@ -682,6 +686,9 @@
 
     <!-- ============ HOME ============ -->
     <section class="view active" id="view-home">
+      <div id="installRow" style="display:none;margin-bottom:12px">
+        <button class="install-btn" onclick="installApp()">📲 이 앱을 내 폰에 설치하기</button>
+      </div>
       <div class="stage">
         <svg class="stage-bg" viewBox="0 0 320 210" preserveAspectRatio="xMidYMax slice">
           <circle cx="276" cy="40" r="24" fill="#FFE7A0" opacity=".65"/><circle cx="276" cy="40" r="15" fill="#FFF3C9" opacity=".8"/>
@@ -1007,6 +1014,14 @@
         <button class="btn ghost small" onclick="closeName()">취소</button>
         <button class="btn go small" onclick="saveName()">이 이름으로 정하기 💗</button>
       </div>
+    </div>
+  </div>
+  <div class="reward-pop" id="installPop" onclick="closeInstallHelp()">
+    <div class="reward-card" onclick="event.stopPropagation()">
+      <div style="font-size:46px" class="big">📲</div>
+      <div style="font-size:17px;margin:6px 0 10px">폰에 앱으로 설치하기</div>
+      <div id="installHelpText" style="font-size:13px;line-height:1.75;color:#6B5B4E;text-align:left"></div>
+      <button class="btn go" style="margin-top:14px;width:100%" onclick="event.stopPropagation();closeInstallHelp()">알겠어요 👍</button>
     </div>
   </div>
   <div class="reward-pop" id="rewardPop" onclick="closeReward()">
@@ -1495,10 +1510,64 @@ function unlockDex(key){
   document.getElementById('dexCount').textContent='('+n+' / 7)';
 }
 
+// ---------- save / load (각자 폰에 자기 진행상황 저장) ----------
+var SAVE_KEY='dreampet_save_v1';
+function save(){
+  try{ localStorage.setItem(SAVE_KEY, JSON.stringify({
+    state:state, petName:petName, houseLevel:houseLevel, buddyKey:buddyKey,
+    owned:Array.from(ownedItems), gifts:Array.from(townGifts),
+    nest:nest, hatched:Array.from(hatched), residents:townResidents,
+    plansDone:plans.map(function(p){return p.done;})
+  })); }catch(e){}
+}
+function load(){
+  try{
+    var raw=localStorage.getItem(SAVE_KEY); if(!raw) return;
+    var d=JSON.parse(raw); if(!d) return;
+    if(d.state) for(var k in d.state){ state[k]=d.state[k]; }
+    if(d.petName) petName=d.petName;
+    if(typeof d.houseLevel==='number') houseLevel=d.houseLevel;
+    if(d.buddyKey) buddyKey=d.buddyKey;
+    if(d.owned) ownedItems=new Set(d.owned);
+    if(d.gifts) townGifts=new Set(d.gifts);
+    if(d.nest) nest=d.nest;
+    if(d.hatched) hatched=new Set(d.hatched);
+    if(d.residents) townResidents=d.residents;
+    if(d.plansDone) plans.forEach(function(p,i){ if(typeof d.plansDone[i]==='boolean') p.done=d.plansDone[i]; });
+  }catch(e){}
+}
+// autosave: 주기적으로 + 앱을 닫거나 숨길 때
+setInterval(save, 4000);
+window.addEventListener('pagehide', save);
+document.addEventListener('visibilitychange', function(){ if(document.hidden) save(); });
+
+// ---------- install to phone ----------
+var deferredPrompt=null;
+function isStandalone(){ try{ return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone===true; }catch(e){ return false; } }
+function isiOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent||''); }
+function showInstallBtn(){ if(!isStandalone()){ var r=document.getElementById('installRow'); if(r) r.style.display='block'; } }
+window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt=e; showInstallBtn(); });
+window.addEventListener('appinstalled', function(){ var r=document.getElementById('installRow'); if(r) r.style.display='none'; deferredPrompt=null; toast('설치 완료! 홈 화면에서 열어보세요 🎉'); });
+function installApp(){
+  if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(function(){ deferredPrompt=null; }); }
+  else { showInstallHelp(); }
+}
+function showInstallHelp(){
+  var t = isiOS()
+   ? '<b>아이폰 🍎</b><br>1) 이 페이지를 <b>사파리</b>로 열어요.<br>2) 아래 가운데 <b>공유 버튼(⬆️)</b>을 눌러요.<br>3) <b>‘홈 화면에 추가’</b>를 눌러요.<br>4) 오른쪽 위 <b>‘추가’</b>를 누르면 끝!<br><br>바탕화면에 코알라 아이콘이 생겨요 🐨'
+   : '<b>안드로이드 🤖</b><br>1) 크롬 오른쪽 위 <b>⋮ 메뉴</b>를 눌러요.<br>2) <b>‘앱 설치’</b> 또는 <b>‘홈 화면에 추가’</b>를 눌러요.<br>3) <b>‘설치’</b>를 누르면 끝!<br><br>바탕화면에 코알라 아이콘이 생겨요 🐨';
+  document.getElementById('installHelpText').innerHTML=t;
+  document.getElementById('installPop').classList.add('show');
+}
+function closeInstallHelp(){ document.getElementById('installPop').classList.remove('show'); }
+if(isiOS() && !isStandalone()) showInstallBtn();
+
 // init
+load();
 renderPlans(); paint(); money(); updateExp(); renderChart();
 buildOverlay(); setHouse(); renderTray(); renderShop(); renderNest();
 setBuddy(); renderTownAnimals(); renderTownGifts(); updateLevel(); renderMood();
+hatched.forEach(function(k){ unlockDex(k); });
 
 // register service worker (앱 설치 + 오프라인 실행) — only works over http/https, not local file
 if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
