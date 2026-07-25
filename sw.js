@@ -1,6 +1,6 @@
 // 네트워크 우선(network-first) — 인터넷이 되면 항상 최신 화면을 먼저 불러오고,
 // 오프라인일 때만 저장된 버전을 보여줘요. (업데이트가 바로 반영되도록)
-const CACHE = 'dream-pet-v5';
+const CACHE = 'dream-pet-v8';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {

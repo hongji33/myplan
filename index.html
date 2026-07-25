@@ -190,6 +190,11 @@
   .anim-pigeon{animation:pbob .7s ease-in-out infinite;}
   .anim-peacock{animation:sway 2.6s ease-in-out infinite;}
   .anim-fox{animation:wag .85s ease-in-out infinite;}
+  .anim-turtle{animation:bob 3.6s ease-in-out infinite;}
+  .anim-chameleon{animation:sway 2.8s ease-in-out infinite;}
+  .anim-kangaroo{animation:hop2 1.1s ease-in-out infinite;}
+  .anim-penguin{animation:waddle 1s ease-in-out infinite;}
+  @keyframes waddle{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
   .koala-home.studying,.koala-room.studying{animation:study 1.5s ease-in-out infinite;}
   @keyframes hop{0%,55%,100%{transform:translateY(0) scaleY(1);}18%{transform:translateY(-2px) scaleY(.9);}42%{transform:translateY(-22px) scaleY(1.06);}}
   @keyframes hop2{0%,50%,100%{transform:translateY(0) scaleY(1);}15%{transform:translateY(-3px) scaleY(.9);}35%{transform:translateY(-28px) scaleY(1.05);}}
@@ -351,6 +356,28 @@
   .nav button .ni{font-size:22px;filter:grayscale(.4);opacity:.6;transition:all .2s;}
   .nav button.on{color:var(--ink);}
   .nav button.on .ni{filter:none;opacity:1;transform:translateY(-2px) scale(1.12);}
+  .refl-area{width:100%;border:2px solid #EADFCF;border-radius:14px;padding:10px 12px;font-family:inherit;
+    font-size:14px;line-height:1.6;resize:vertical;min-height:74px;outline:none;color:var(--ink);box-sizing:border-box;}
+  .refl-area:focus{border-color:#B7E0C4;}
+  .cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .cal-head button{border:none;background:#F0E7D8;border-radius:10px;width:34px;height:32px;font-size:17px;
+    font-family:inherit;cursor:pointer;color:#8A6E52;}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+  .cal .dow{font-size:11px;color:#9A897B;text-align:center;padding:2px 0;}
+  .cal .dow.sun{color:#E08A8A;} .cal .dow.sat{color:#7FA6D8;}
+  .cal .cell{aspect-ratio:1/1;border-radius:10px;background:#F7F1E7;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;font-size:12px;color:#6B5B4E;cursor:pointer;position:relative;gap:2px;}
+  .cal .cell.empty{background:transparent;cursor:default;}
+  .cal .cell.has{background:#EAF7EC;}
+  .cal .cell.today{outline:2px solid #8FD0A8;font-weight:800;}
+  .cal .cell.future{color:#C9BEAE;cursor:default;}
+  .cal .dots{display:flex;gap:2px;height:5px;}
+  .cal .dot{width:5px;height:5px;border-radius:50%;}
+  .cal .dot.refl{background:#5BB98B;} .cal .dot.plan{background:#F2C84C;}
+  .dream-card{background:linear-gradient(135deg,#FFF6E4,#F1EEFB);}
+  .dream-card #dreamText b{color:#C58A2E;}
+  .dh-item{padding:9px 2px;border-bottom:1px dashed #EEE3D6;font-size:13px;color:#5B5348;line-height:1.5;}
+  .dh-item .dh-d{font-size:11px;color:#9A897B;}
 
   /* toast */
   .ver-tag{position:absolute;right:12px;bottom:84px;font-size:10px;color:rgba(150,120,90,.5);z-index:2;pointer-events:none;}
@@ -673,6 +700,74 @@
       <path d="M44 106 v7 M44 113 l-5 3 M44 113 l5 3"/><path d="M56 106 v7 M56 113 l-5 3 M56 113 l5 3"/></g>
   </symbol>
 
+  <!-- friend: turtle -->
+  <symbol id="turtle" viewBox="0 0 100 118">
+    <g stroke="#4E8B4A" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="50" cy="99" rx="22" ry="16" fill="#8FCB79"/>
+      <ellipse cx="50" cy="55" rx="40" ry="33" fill="#93CE7E"/>
+    </g>
+    <g stroke="#4E8B4A" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="26" cy="98" rx="7" ry="8" fill="#7FBF6A"/><ellipse cx="74" cy="98" rx="7" ry="8" fill="#7FBF6A"/>
+    </g>
+    <g stroke="#4E8B4A" stroke-width="2.5"><ellipse cx="40" cy="114" rx="7" ry="5" fill="#6BA85A"/><ellipse cx="60" cy="114" rx="7" ry="5" fill="#6BA85A"/></g>
+    <path d="M50 76 Q33 76 32 91 Q40 105 50 105 Q60 105 68 91 Q67 76 50 76 Z" fill="#E0B36A" stroke="#B5843E" stroke-width="2.5"/>
+    <g stroke="#B5843E" stroke-width="1.5" fill="none"><path d="M50 78 V103"/><path d="M41 83 L34 88 M59 83 L66 88 M41 99 L34 96 M59 99 L66 96"/></g>
+    <ellipse cx="27" cy="64" rx="7" ry="5" fill="#F4AEBD"/><ellipse cx="73" cy="64" rx="7" ry="5" fill="#F4AEBD"/>
+    <circle cx="40" cy="56" r="4.6" fill="#3E4A38"/><circle cx="60" cy="56" r="4.6" fill="#3E4A38"/>
+    <circle cx="41.5" cy="54.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="54.4" r="1.5" fill="#fff"/>
+    <path d="M44 63 Q50 67 56 63" stroke="#4E8B4A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <!-- friend: chameleon -->
+  <symbol id="chameleon" viewBox="0 0 100 118">
+    <g stroke="#3E9B86" stroke-width="3" stroke-linejoin="round">
+      <path d="M74 92 Q94 92 92 78 Q90 70 83 72 Q89 79 82 84 Q77 88 72 86 Z" fill="#7FD0C0"/>
+      <ellipse cx="50" cy="99" rx="22" ry="16" fill="#7FD0C0"/>
+      <ellipse cx="50" cy="55" rx="39" ry="32" fill="#88D6C6"/>
+    </g>
+    <g stroke="#3E9B86" stroke-width="2" fill="#5FBFA8"><path d="M42 24 L46 15 L50 23 L54 15 L58 24 Z"/></g>
+    <g stroke="#3E9B86" stroke-width="3" stroke-linejoin="round"><ellipse cx="27" cy="98" rx="6.5" ry="8" fill="#6FC7B4"/><ellipse cx="73" cy="98" rx="6.5" ry="8" fill="#6FC7B4"/></g>
+    <g stroke="#3E9B86" stroke-width="2.5"><ellipse cx="40" cy="114" rx="6.5" ry="4.5" fill="#5AB39E"/><ellipse cx="60" cy="114" rx="6.5" ry="4.5" fill="#5AB39E"/></g>
+    <circle cx="32" cy="52" r="11" fill="#8ADACA" stroke="#3E9B86" stroke-width="2.5"/>
+    <circle cx="68" cy="52" r="11" fill="#8ADACA" stroke="#3E9B86" stroke-width="2.5"/>
+    <circle cx="33" cy="53" r="3.6" fill="#2E4A42"/><circle cx="67" cy="51" r="3.6" fill="#2E4A42"/>
+    <circle cx="34" cy="52" r="1.2" fill="#fff"/><circle cx="68" cy="50" r="1.2" fill="#fff"/>
+    <ellipse cx="21" cy="66" rx="6" ry="4.5" fill="#F4AEBD"/><ellipse cx="79" cy="66" rx="6" ry="4.5" fill="#F4AEBD"/>
+    <path d="M40 64 Q50 70 60 64" stroke="#3E9B86" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <!-- friend: kangaroo -->
+  <symbol id="kangaroo" viewBox="0 0 100 118">
+    <g stroke="#B57A45" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="32" cy="20" rx="6" ry="15" fill="#DDA96E"/><ellipse cx="68" cy="20" rx="6" ry="15" fill="#DDA96E"/>
+      <ellipse cx="50" cy="100" rx="23" ry="16" fill="#DDA96E"/>
+      <ellipse cx="50" cy="57" rx="37" ry="31" fill="#E7B87E"/>
+    </g>
+    <ellipse cx="32" cy="20" rx="2.6" ry="9" fill="#F4C9AE"/><ellipse cx="68" cy="20" rx="2.6" ry="9" fill="#F4C9AE"/>
+    <g stroke="#B57A45" stroke-width="3" stroke-linejoin="round"><ellipse cx="26" cy="94" rx="6" ry="8" fill="#D0985E"/><ellipse cx="74" cy="94" rx="6" ry="8" fill="#D0985E"/></g>
+    <g stroke="#B57A45" stroke-width="2.5"><ellipse cx="40" cy="114" rx="8" ry="5" fill="#C48F55"/><ellipse cx="60" cy="114" rx="8" ry="5" fill="#C48F55"/></g>
+    <path d="M50 80 Q36 80 35 94 Q42 106 50 106 Q58 106 65 94 Q64 80 50 80 Z" fill="#F2D8B4" stroke="#C79A66" stroke-width="2.5"/>
+    <circle cx="50" cy="95" r="7.5" fill="#E7B87E" stroke="#B57A45" stroke-width="2"/>
+    <circle cx="47" cy="94" r="1.3" fill="#4A3B33"/><circle cx="53" cy="94" r="1.3" fill="#4A3B33"/>
+    <ellipse cx="27" cy="65" rx="7" ry="5" fill="#F4AEBD"/><ellipse cx="73" cy="65" rx="7" ry="5" fill="#F4AEBD"/>
+    <circle cx="40" cy="57" r="4.6" fill="#4A3B33"/><circle cx="60" cy="57" r="4.6" fill="#4A3B33"/>
+    <circle cx="41.5" cy="55.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="55.4" r="1.5" fill="#fff"/>
+    <path d="M50 62 l-3 3 h6 Z" fill="#8A5E3E"/><path d="M50 65 v2.5" stroke="#8A5E3E" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <!-- friend: penguin -->
+  <symbol id="penguin" viewBox="0 0 100 118">
+    <g stroke="#33465E" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="18" cy="72" rx="8" ry="19" fill="#3E5470"/><ellipse cx="82" cy="72" rx="8" ry="19" fill="#3E5470"/>
+      <ellipse cx="50" cy="99" rx="23" ry="16" fill="#46607E"/>
+      <ellipse cx="50" cy="54" rx="38" ry="33" fill="#4C6684"/>
+    </g>
+    <path d="M50 34 Q26 40 26 74 Q26 96 50 96 Q74 96 74 74 Q74 40 50 34 Z" fill="#FBF7F1"/>
+    <g stroke="#C97A2E" stroke-width="2.5" stroke-linejoin="round" fill="#F2A93C">
+      <path d="M40 110 l-6 5 l7 1 l3 -5 Z"/><path d="M60 110 l6 5 l-7 1 l-3 -5 Z"/></g>
+    <ellipse cx="30" cy="58" rx="6" ry="4.5" fill="#F7C0CE"/><ellipse cx="70" cy="58" rx="6" ry="4.5" fill="#F7C0CE"/>
+    <circle cx="41" cy="50" r="4.6" fill="#2E3A4A"/><circle cx="59" cy="50" r="4.6" fill="#2E3A4A"/>
+    <circle cx="42.5" cy="48.4" r="1.5" fill="#fff"/><circle cx="60.5" cy="48.4" r="1.5" fill="#fff"/>
+    <path d="M50 55 l-5 4 l5 3.5 l5 -3.5 Z" fill="#F2A93C" stroke="#C97A2E" stroke-width="1.4" stroke-linejoin="round"/>
+  </symbol>
+
   <!-- shop gifts (placed in town) -->
   <symbol id="gift-teddy" viewBox="0 0 40 44">
     <g stroke="#8A5E3E" stroke-width="2.5" stroke-linejoin="round">
@@ -747,6 +842,16 @@
     <section class="view active" id="view-home">
       <div id="installRow" style="display:none;margin-bottom:12px">
         <button class="install-btn" onclick="installApp()">📲 이 앱을 내 폰에 설치하기</button>
+      </div>
+      <div class="card dream-card" style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <div style="font-size:12px;color:#9A897B;font-weight:700">🌟 나의 꿈</div>
+          <div style="display:flex;gap:6px">
+            <button class="edit-btn" onclick="openDreamHistory()">📜 지난 꿈</button>
+            <button class="edit-btn" onclick="openDream()">✏️ 적기</button>
+          </div>
+        </div>
+        <div id="dreamText" onclick="openDream()" style="font-size:15px;color:var(--ink);margin-top:6px;cursor:pointer;line-height:1.5"></div>
       </div>
       <div class="stage">
         <svg class="stage-bg" viewBox="0 0 320 210" preserveAspectRatio="xMidYMax slice">
@@ -998,9 +1103,9 @@
         </div>
         <div class="bar"><i id="expBar" style="width:60%"></i></div>
         <div class="stat-row">
-          <div class="stat"><b>💗 78%</b><span>친밀도</span></div>
-          <div class="stat"><b>😋 보통</b><span>배부름</span></div>
-          <div class="stat"><b>🔥 5일</b><span>연속 달성</span></div>
+          <div class="stat"><b id="intiStat">💗 30%</b><span>친밀도</span></div>
+          <div class="stat"><b id="fullStat">🍽️ 배고파</b><span>배부름</span></div>
+          <div class="stat"><b id="streakStat">🔥 1일</b><span>연속 달성</span></div>
         </div>
       </div>
       <div class="section-title">📖 나의 동물 도감</div>
@@ -1035,15 +1140,38 @@
         <div class="chart-base"></div>
         <div class="chart-axis"><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span></div>
         <p style="font-size:13px;text-align:center;color:var(--ink-soft);margin:14px 0 0">
-          이번 주 총 <b style="color:var(--ink);font-variant-numeric:tabular-nums">8시간 20분</b> 집중했어요 👏<br>
-          <span style="font-size:12px">가장 열심히 한 날은 <b style="color:#5BB98B">일요일</b>이에요 🌟</span>
+          이번 주 총 <b id="reportTotal" style="color:var(--ink);font-variant-numeric:tabular-nums">0분</b> 집중했어요 👏<br>
+          <span id="reportPeak" style="font-size:12px;display:none"></span>
         </p>
       </div>
       <div class="section-title">🌱 진화 일기</div>
       <div class="card">
-        <div class="diary"><div class="d-ic">🥚</div><div><div class="d-t">코야를 처음 만났어요</div><div class="d-d">5일 전</div></div></div>
-        <div class="diary"><div class="d-ic">🐣</div><div><div class="d-t">3일 연속 계획 달성! 아기 코알라로 자랐어요</div><div class="d-d">2일 전</div></div></div>
-        <div class="diary" style="border:none"><div class="d-ic">🐨</div><div><div class="d-t">Lv.3 달성 — 오늘도 함께 공부 중 💗</div><div class="d-d">오늘</div></div></div>
+        <div id="diaryList"></div>
+      </div>
+    </section>
+
+    <!-- ============ 돌아보기 (하루 소감 + 달력) ============ -->
+    <section class="view" id="view-diary">
+      <div class="section-title">📔 오늘 나의 하루 돌아보기</div>
+      <div class="card">
+        <div style="font-size:12px;color:#9A897B;margin-bottom:8px" id="reflDate">오늘</div>
+        <textarea id="reflInput" class="refl-area" maxlength="300" placeholder="오늘 공부하며 느낀 점, 잘한 점, 아쉬운 점을 솔직하게 적어봐요 ✍️"></textarea>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px">
+          <span style="font-size:11px;color:#9A897B" id="reflHint">15자 이상 솔직하게 쓰면 💎 보석을 받아요 (하루 1번)</span>
+          <button class="btn go small" style="white-space:nowrap" onclick="saveReflection()">소감 올리기 ✨</button>
+        </div>
+      </div>
+      <div class="section-title">🗓️ 나의 달력</div>
+      <div class="card">
+        <div class="cal-head">
+          <button onclick="calMove(-1)">‹</button>
+          <b id="calTitle" style="font-size:15px"></b>
+          <button onclick="calMove(1)">›</button>
+        </div>
+        <div class="cal" id="calDow"></div>
+        <div class="cal" id="calGrid" style="margin-top:4px"></div>
+        <p style="font-size:11px;color:#9A897B;text-align:center;margin:12px 0 0;line-height:1.6">
+          날짜를 누르면 그날의 계획과 소감을 볼 수 있어요 💚<br>초록 점은 소감을 올린 날, 노란 점은 계획을 완료한 날이에요.</p>
       </div>
     </section>
 
@@ -1056,9 +1184,10 @@
     <button data-v="pet" onclick="go('pet',this)"><span class="ni">🐨</span>캐릭터</button>
     <button data-v="shop" onclick="go('shop',this)"><span class="ni">🛍️</span>상점</button>
     <button data-v="report" onclick="go('report',this)"><span class="ni">📊</span>리포트</button>
+    <button data-v="diary" onclick="go('diary',this)"><span class="ni">📔</span>돌아보기</button>
   </nav>
 
-  <div class="ver-tag">v2.2</div>
+  <div class="ver-tag">v2.5</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -1127,11 +1256,40 @@
       <button class="btn go" style="margin-top:15px;width:100%" onclick="closeGemGuide()">알겠어요 👍</button>
     </div>
   </div>
+  <div class="reward-pop" id="dayPop" onclick="closeDayPop()">
+    <div class="reward-card" onclick="event.stopPropagation()" style="max-width:340px;text-align:left">
+      <div style="text-align:center"><div class="big">🗓️</div><div id="dayPopTitle" style="font-size:16px;margin:4px 0 12px"></div></div>
+      <div id="dayPopBody" style="font-size:13px;line-height:1.7;color:#5B5348"></div>
+      <button class="btn go" style="margin-top:14px;width:100%" onclick="closeDayPop()">닫기</button>
+    </div>
+  </div>
+  <div class="reward-pop" id="dreamPop" onclick="closeDream()">
+    <div class="reward-card" onclick="event.stopPropagation()" style="max-width:340px">
+      <div style="font-size:44px" class="big">🌟</div>
+      <div style="font-size:17px;margin:6px 0 2px">나의 꿈 적기</div>
+      <div style="font-size:12px;color:#9A897B;margin-bottom:10px">꿈은 언제든 바뀌어도 좋아요. 바뀔 때마다 새로 적어요 💫</div>
+      <div style="text-align:left;font-size:14px;color:var(--ink);margin-bottom:4px">나의 꿈은…</div>
+      <textarea id="dreamInput" class="refl-area" maxlength="120" style="min-height:60px" placeholder="예: 사람들을 돕는 의사"></textarea>
+      <div style="text-align:left;font-size:14px;color:var(--ink);margin-top:4px">…입니다.</div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn ghost small" onclick="closeDream()">취소</button>
+        <button class="btn go small" onclick="saveDream()">이 꿈으로 저장 🌟</button>
+      </div>
+    </div>
+  </div>
+  <div class="reward-pop" id="dreamHistPop" onclick="closeDreamHistory()">
+    <div class="reward-card" onclick="event.stopPropagation()" style="max-width:340px;text-align:left">
+      <div style="text-align:center"><div class="big">📜</div><div style="font-size:17px;margin:4px 0 4px">나의 꿈의 변화</div>
+        <div style="font-size:12px;color:#9A897B;margin-bottom:10px">꿈이 어떻게 자라왔는지 돌아봐요 🌱</div></div>
+      <div id="dreamHistBody" style="max-height:320px;overflow:auto"></div>
+      <button class="btn go" style="margin-top:14px;width:100%" onclick="closeDreamHistory()">닫기</button>
+    </div>
+  </div>
 </div>
 
 <script>
 // ---------- state ----------
-var state = { gems:120, rare:2, exp:60, feed:3, level:3, days:5 };
+var state = { gems:0, rare:0, exp:0, feed:0, level:1, days:1, rareDay:'', planAwDay:'', planAwCnt:0 };
 // 기본(고정) 계획 — 삭제되지 않고 매일 반복되며, 새 날엔 체크만 풀려요
 var DEFAULT_PLANS = [
   {t:"수학 문제집 2쪽 풀기", cat:"공부", emoji:"📝", color:"#D8ECFB", pomo:2, fixed:true},
@@ -1140,7 +1298,7 @@ var DEFAULT_PLANS = [
   {t:"줄넘기 100개 하기", cat:"운동", emoji:"🏃", color:"#D6F0E0", pomo:1, fixed:true},
   {t:"(어제 못한) 오답노트 정리", cat:"보완 미션", emoji:"⭐", color:"#FFE0EC", pomo:1, bonus:true, fixed:true},
 ];
-function freshDefaults(){ return DEFAULT_PLANS.map(function(p){ return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:true,done:false}; }); }
+function freshDefaults(){ return DEFAULT_PLANS.map(function(p){ return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:true,done:false,awarded:false}; }); }
 var plans = freshDefaults();
 var speeches = ["주인님, 오늘도 같이 공부해요! 🌱","조금만 더 힘내요, 반짝반짝! ✨","계획 하나 끝내면 보석을 찾아올게요 💎","우리 같이 갓생 살아요! 💪","쉬는 것도 중요해요, 무리 말아요 🍃"];
 
@@ -1151,6 +1309,7 @@ function go(v,el){
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
   el.classList.add('on');
   document.querySelector('.screen').scrollTop=0;
+  if(v==='diary' && typeof initDiaryView==='function') initDiaryView();
 }
 
 // ---------- render ----------
@@ -1244,20 +1403,31 @@ function savePlan(){
 function togglePlan(i){
   plans[i].done=!plans[i].done; renderPlans();
   if(plans[i].done){
-    if(plans[i].bonus){ state.rare+=1; state.gems+=10; money(); earnFeed(1);
-      toast('보완 미션 완료! 💚 희귀 보석 +1, 🌾 +1'); }
-    else { state.gems+=15; money(); earnFeed(1); toast('잘했어요! 💎 +15, 🌾 +1'); }
-    pulsePet(); addExp(6);
+    if(plans[i].awarded){ toast('이미 보석을 받은 계획이에요 😊 (하루 1번만 지급돼요)'); save(); return; }
+    plans[i].awarded=true;
+    if(state.planAwDay!==todayKey()){ state.planAwDay=todayKey(); state.planAwCnt=0; }
+    if(state.planAwCnt>=12){
+      toast('오늘 계획 보상은 충분히 받았어요 😊 남은 계획도 끝까지 실천해봐요!');
+    } else {
+      state.planAwCnt++;
+      if(plans[i].bonus){ state.rare+=1; state.gems+=10; money(); earnFeed(1);
+        addDiary('⭐','미룬 계획을 다시 해냈어요! 💚 희귀 보석 획득');
+        toast('보완 미션 완료! 💚 희귀 보석 +1, 🌾 +1'); }
+      else { state.gems+=15; money(); earnFeed(1); toast('잘했어요! 💎 +15, 🌾 +1'); }
+      pulsePet(); addExp(6);
+    }
     checkAllPlansDone();
   }
+  save();
 }
 function checkAllPlansDone(){
   if(!plans.length) return;
   var allDone=plans.every(function(p){ return p.done; });
   if(allDone && state.rareDay!==todayKey()){
     state.rareDay=todayKey();
-    state.rare+=1; money(); save();
-    showReward('🌟','오늘의 꿈 모두 완료!','정말 대단해요! 💚 희귀 보석 +1을 받았어요 ✨');
+    state.rare+=1; money();
+    addDiary('🌟','오늘의 꿈을 모두 완료! 💚 희귀 보석 획득');
+    showReward('🌟','오늘의 꿈 모두 완료!','정말 대단해요! 💚 희귀 보석 +1을 받았어요 ✨'); save();
   }
 }
 
@@ -1339,18 +1509,29 @@ function idleTick(){
 setInterval(idleTick,5000);
 function finishFocus(){
   setStudy(false);
-  var doneMin = total>=60 ? Math.round(total/60)+'분 ' : '';
   left=total; paint();
   document.getElementById('startBtn').textContent='▶ 시작';
-  document.getElementById('timerState').textContent='집중 완료! 잘했어요';
-  state.gems+=30; money(); earnFeed(3);
-  showReward('💎','집중 성공! 🍅',doneMin+'집중 완료 — 💎 30, 🌾 모이 3개 획득!');
-  addExp(20);
-  setMood('happy');
+  var mins=Math.round(total/60);
+  if(mins>=5){
+    var gg=mins+(mins>=25?5:0);       // 실제 집중한 분에 비례해 보석 지급
+    var ff=Math.floor(mins/12)+1;     // 모이도 시간에 비례
+    state.gems+=gg; earnFeed(ff); money();
+    addStudyMinutes(mins); addExp(Math.min(40,mins));
+    document.getElementById('timerState').textContent='집중 완료! 잘했어요';
+    var lbl=(mins>=60?Math.floor(mins/60)+'시간 '+(mins%60)+'분':mins+'분');
+    showReward('💎','집중 성공! 🍅',lbl+' 집중 완료 — 💎 '+gg+', 🌾 모이 '+ff+'개 획득!');
+    setMood('happy');
+  } else {
+    document.getElementById('timerState').textContent='체험 완료! (실제 5분 이상 집중해야 보석을 받아요)';
+    toast('체험 완료예요 😊 실제로 5분 이상 집중하면 보석·모이를 받아요');
+    setMood('happy');
+  }
+  save();
 }
 function addExp(n){
   state.exp+=n;
   while(state.exp>=100){ state.exp-=100; state.level++;
+    addDiary('🎉','Lv.'+state.level+' 달성! 함께 쑥쑥 성장 중 💗');
     showReward('🎉','레벨 업! Lv.'+state.level,'Lv.'+state.level+' 달성! 상점·꾸미기에 새로운 아이템이 열렸어요 ✨');
   }
   updateExp(); updateLevel();
@@ -1359,6 +1540,9 @@ function addExp(n){
 }
 function updateLevel(){
   var lv=document.getElementById('petLv'); if(lv) lv.textContent='Lv.'+state.level+' · 함께한 지 '+state.days+'일째';
+  var st=document.getElementById('streakStat'); if(st) st.textContent='🔥 '+state.days+'일';
+  var it=document.getElementById('intiStat'); if(it) it.textContent='💗 '+Math.min(99,25+state.level*6+Math.floor(state.exp/10))+'%';
+  var fu=document.getElementById('fullStat'); if(fu) fu.textContent=(state.feed>=3?'😋 배불러':(state.feed>0?'🍽️ 보통':'🍽️ 배고파'));
   applyName();
 }
 function updateExp(){
@@ -1439,24 +1623,155 @@ function pulsePet(){ ['homePet','roomPet'].forEach(function(id){ var p=document.
   p.style.transform='scale(1.15)'; setTimeout(function(){p.style.transform='';},250); }); }
 
 // ---------- report chart ----------
-var week=[{d:'월',m:40},{d:'화',m:65},{d:'수',m:50},{d:'목',m:80},{d:'금',m:70},{d:'토',m:35},{d:'일',m:90}];
+function freshWeek(){ return [{d:'월',m:0},{d:'화',m:0},{d:'수',m:0},{d:'목',m:0},{d:'금',m:0},{d:'토',m:0},{d:'일',m:0}]; }
+var week=freshWeek(), weekAnchor='';
+function todayIdx(){ return (new Date().getDay()+6)%7; }
+function mondayKey(){ var d=new Date(); var diff=(d.getDay()+6)%7; d.setDate(d.getDate()-diff);
+  return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function fmtMin(m){ return (m>=60?Math.floor(m/60)+'시간 ':'')+(m%60)+'분'; }
+function addStudyMinutes(mins){ if(mins<=0) return;
+  if(weekAnchor!==mondayKey()){ week=freshWeek(); weekAnchor=mondayKey(); }
+  week[todayIdx()].m+=mins;
+  dayMin[todayKey()]=(dayMin[todayKey()]||0)+mins;
+  renderChart(); save();
+}
 function renderChart(){
   var c=document.getElementById('chart'); if(!c) return; c.innerHTML='';
   var max=Math.max.apply(null,week.map(function(x){return x.m;}));
+  var total=week.reduce(function(a,b){return a+b.m;},0);
   var peak=week.reduce(function(a,b){return b.m>a.m?b:a;});
   var tip=document.createElement('div'); tip.className='chart-tip'; tip.id='chartTip'; c.appendChild(tip);
   week.forEach(function(x){
-    var col=document.createElement('div'); col.className='col'+(x===peak?' peak':'');
-    var label=(x.m>=60?Math.floor(x.m/60)+'시간 ':'')+(x.m%60)+'분';
+    var col=document.createElement('div'); col.className='col'+((max>0&&x===peak)?' peak':'');
+    var label=fmtMin(x.m);
     col.innerHTML='<span class="val">'+x.m+'</span><i style="height:0"></i>';
     col.addEventListener('mouseenter',function(){ tip.textContent=x.d+'요일 · '+label; tip.classList.add('show');
       var r=col.getBoundingClientRect(), pr=c.getBoundingClientRect();
       tip.style.left=(r.left-pr.left+r.width/2)+'px'; tip.style.top=(r.top-pr.top)+'px'; });
     col.addEventListener('mouseleave',function(){ tip.classList.remove('show'); });
     c.appendChild(col);
-    setTimeout(function(){ col.querySelector('i').style.height=(x.m/max*100)+'%'; },60);
+    setTimeout(function(){ col.querySelector('i').style.height=(max>0?(x.m/max*100):0)+'%'; },60);
   });
+  var tEl=document.getElementById('reportTotal'), pEl=document.getElementById('reportPeak');
+  if(tEl) tEl.textContent=fmtMin(total);
+  if(pEl){ pEl.style.display = (total>0)?'block':'none'; if(total>0) pEl.innerHTML='가장 열심히 한 날은 <b style="color:#5BB98B">'+peak.d+'요일</b>이에요 🌟'; }
 }
+
+// ---------- 진화 일기 (실제 일어난 일들이 계속 기록돼요) ----------
+var diary=[];
+function addDiary(ic,t){ diary.unshift({ic:ic,t:t,day:todayKey()}); if(diary.length>80) diary.pop(); renderDiary(); if(typeof save==='function') save(); }
+function renderDiary(){
+  var g=document.getElementById('diaryList'); if(!g) return;
+  if(!diary.length){ g.innerHTML='<p style="font-size:12px;color:#9A897B;text-align:center;margin:8px 0;line-height:1.6">아직 진화 일기가 없어요.<br>공부하고 동물을 키우면 이야기가 하나씩 쌓여요! 🌱</p>'; return; }
+  g.innerHTML=diary.map(function(e,i){ var last=(i===diary.length-1);
+    return '<div class="diary"'+(last?' style="border:none"':'')+'><div class="d-ic">'+e.ic+'</div><div><div class="d-t">'+esc(e.t)+'</div><div class="d-d">'+esc(e.day||'')+'</div></div></div>'; }).join('');
+}
+
+// ---------- 하루 돌아보기 (소감 일기 + 달력) ----------
+var journal={}, planLog={}, dayMin={}, _cal=null;
+function initDiaryView(){
+  var t=document.getElementById('reflInput');
+  var j=journal[todayKey()];
+  if(t) t.value=(j&&j.text)?j.text:'';
+  var rd=document.getElementById('reflDate'); if(rd) rd.textContent=todayKey()+' · 오늘';
+  var h=document.getElementById('reflHint');
+  if(h) h.textContent=(j&&j.rewarded)?'오늘 소감 보석을 이미 받았어요 😊 내용은 계속 고칠 수 있어요':'15자 이상 솔직하게 쓰면 💎 보석을 받아요 (하루 1번)';
+  var n=new Date(); if(!_cal) _cal={y:n.getFullYear(), m:n.getMonth()+1};
+  renderCalendar();
+}
+function saveReflection(){
+  var t=document.getElementById('reflInput'); if(!t) return;
+  var txt=t.value.trim();
+  if(!txt){ toast('오늘 소감을 적어주세요 ✍️'); return; }
+  var k=todayKey(), j=journal[k]||{text:'',rewarded:false};
+  j.text=txt;
+  var gotReward=false;
+  if(!j.rewarded && txt.length>=15){ j.rewarded=true; state.gems+=10; money(); addExp(4); gotReward=true; }
+  journal[k]=j;
+  planLog[k]=plans.map(function(p){return {t:p.t,done:p.done};});
+  renderCalendar(); save();
+  var h=document.getElementById('reflHint');
+  if(gotReward){ addDiary('📔','오늘 하루를 돌아보며 소감을 남겼어요 💎');
+    showReward('📔','소감 올리기 완료!','솔직한 하루 돌아보기 💎 보석 +10을 받았어요! 내일도 만나요 🌙');
+    if(h) h.textContent='오늘 소감 보석을 이미 받았어요 😊 내용은 계속 고칠 수 있어요'; }
+  else { toast('오늘 소감을 저장했어요 💚'); }
+}
+function calMove(delta){
+  if(!_cal){ var n=new Date(); _cal={y:n.getFullYear(),m:n.getMonth()+1}; }
+  _cal.m+=delta; if(_cal.m<1){_cal.m=12;_cal.y--;} if(_cal.m>12){_cal.m=1;_cal.y++;}
+  renderCalendar();
+}
+function renderCalendar(){
+  var dowEl=document.getElementById('calDow'), grid=document.getElementById('calGrid'), title=document.getElementById('calTitle');
+  if(!grid) return;
+  if(!_cal){ var n=new Date(); _cal={y:n.getFullYear(),m:n.getMonth()+1}; }
+  title.textContent=_cal.y+'년 '+_cal.m+'월';
+  var days=['일','월','화','수','목','금','토'];
+  dowEl.innerHTML=days.map(function(d,i){return '<div class="dow'+(i===0?' sun':(i===6?' sat':''))+'">'+d+'</div>';}).join('');
+  grid.innerHTML='';
+  var first=new Date(_cal.y,_cal.m-1,1).getDay();
+  var last=new Date(_cal.y,_cal.m,0).getDate();
+  var tk=todayKey(), td=new Date();
+  var thisMonth=(td.getFullYear()===_cal.y && (td.getMonth()+1)===_cal.m);
+  var afterMonth=(_cal.y>td.getFullYear())||(_cal.y===td.getFullYear() && _cal.m>td.getMonth()+1);
+  var i,e;
+  for(i=0;i<first;i++){ e=document.createElement('div'); e.className='cell empty'; grid.appendChild(e); }
+  for(var d=1;d<=last;d++){
+    var key=_cal.y+'-'+_cal.m+'-'+d;
+    var hasRefl=!!(journal[key]&&journal[key].text);
+    var pl=planLog[key], hasPlan=!!(pl&&pl.some(function(p){return p.done;}));
+    var future=afterMonth||(thisMonth && d>td.getDate());
+    var cell=document.createElement('div');
+    cell.className='cell'+((hasRefl||hasPlan)?' has':'')+((key===tk)?' today':'')+(future?' future':'');
+    cell.innerHTML='<span>'+d+'</span><div class="dots">'+(hasRefl?'<span class="dot refl"></span>':'')+(hasPlan?'<span class="dot plan"></span>':'')+'</div>';
+    if(!future){ (function(k){ cell.onclick=function(){ openDay(k); }; })(key); }
+    grid.appendChild(cell);
+  }
+}
+function openDay(key){
+  var j=journal[key], pl=planLog[key], mins=dayMin[key]||0, body='';
+  body+='<div style="margin-bottom:9px"><b>📝 그날의 계획</b><br>';
+  if(pl&&pl.length){ body+=pl.map(function(p){return (p.done?'✅ ':'⬜ ')+esc(p.t);}).join('<br>'); }
+  else body+='<span style="color:#9A897B">기록된 계획이 없어요</span>';
+  body+='</div>';
+  if(mins>0) body+='<div style="margin-bottom:9px"><b>⏱️ 집중 시간</b> · '+fmtMin(mins)+'</div>';
+  body+='<div><b>📔 하루 소감</b><br>'+((j&&j.text)?esc(j.text):'<span style="color:#9A897B">소감이 없어요</span>')+'</div>';
+  document.getElementById('dayPopTitle').textContent=key;
+  document.getElementById('dayPopBody').innerHTML=body;
+  document.getElementById('dayPop').classList.add('show');
+}
+function closeDayPop(){ document.getElementById('dayPop').classList.remove('show'); }
+
+// ---------- 나의 꿈 (언제든 바꿀 수 있고, 변화가 기록돼요) ----------
+var dream='', dreamHistory=[];
+function renderDream(){
+  var el=document.getElementById('dreamText'); if(!el) return;
+  if(dream){ el.innerHTML='나의 꿈은 <b>'+esc(dream)+'</b> 입니다'; }
+  else { el.innerHTML='<span style="color:#9A897B">나의 꿈은 <b style="color:#C58A2E">______</b> 입니다 (눌러서 적어요)</span>'; }
+}
+function openDream(){ var t=document.getElementById('dreamInput'); if(t) t.value=dream||''; document.getElementById('dreamPop').classList.add('show'); }
+function closeDream(){ document.getElementById('dreamPop').classList.remove('show'); }
+function saveDream(){
+  var t=document.getElementById('dreamInput'); if(!t) return;
+  var v=t.value.trim();
+  if(!v){ toast('꿈을 적어주세요 🌟'); return; }
+  if(v===dream){ closeDream(); return; }
+  dreamHistory.unshift({text:v, day:todayKey()});
+  if(dreamHistory.length>50) dreamHistory.pop();
+  dream=v; renderDream(); closeDream(); save();
+  addDiary('🌟','새로운 꿈을 적었어요: "'+v+'"');
+  toast('꿈을 저장했어요! 🌟 언제든 바꿔도 좋아요');
+}
+function openDreamHistory(){
+  var g=document.getElementById('dreamHistBody');
+  if(g){
+    if(!dreamHistory.length){ g.innerHTML='<p style="font-size:12px;color:#9A897B;text-align:center;margin:8px 0">아직 적은 꿈이 없어요.<br>첫 꿈을 적어볼까요? 🌟</p>'; }
+    else { g.innerHTML=dreamHistory.map(function(h,i){
+      return '<div class="dh-item"'+(i===dreamHistory.length-1?' style="border:none"':'')+'>'+(i===0?'🌟 <b>지금의 꿈</b> · ':'🔸 ')+'<span class="dh-d">'+esc(h.day)+'</span><br>나의 꿈은 <b>'+esc(h.text)+'</b> 입니다</div>'; }).join(''); }
+  }
+  document.getElementById('dreamHistPop').classList.add('show');
+}
+function closeDreamHistory(){ document.getElementById('dreamHistPop').classList.remove('show'); }
 
 // ---------- forest town ----------
 var houseLevel=1;
@@ -1549,9 +1864,13 @@ var CREATURES={
   pigeon:{nm:'비둘기',emoji:'🕊️',sym:'bird-pigeon'},
   peacock:{nm:'공작',emoji:'🦚',sym:'bird-peacock'},
   fox:{nm:'여우',emoji:'🦊',sym:'fox'},
-  rabbit:{nm:'토끼',emoji:'🐰',sym:'rabbit'}
+  rabbit:{nm:'토끼',emoji:'🐰',sym:'rabbit'},
+  turtle:{nm:'거북이',emoji:'🐢',sym:'turtle'},
+  chameleon:{nm:'카멜레온',emoji:'🦎',sym:'chameleon'},
+  kangaroo:{nm:'캥거루',emoji:'🦘',sym:'kangaroo'},
+  penguin:{nm:'펭귄',emoji:'🐧',sym:'penguin'}
 };
-var POOL=['chick','parrot','pigeon','peacock','fox','rabbit'];
+var POOL=['chick','parrot','pigeon','peacock','fox','rabbit','turtle','chameleon','kangaroo','penguin'];
 var STAGES=['baby','juvenile','adult'];
 var STAGE_KO={baby:'아기',juvenile:'어린',adult:'다 자란'};
 var STAGE_W={baby:76,juvenile:104,adult:130};
@@ -1570,7 +1889,7 @@ function applyPetAnim(){
   var key=buddyKey||'koala';
   ['homePet','roomPet'].forEach(function(id){
     var el=document.getElementById(id); if(!el) return;
-    ['koala','chick','rabbit','parrot','pigeon','peacock','fox'].forEach(function(k){ el.classList.remove('anim-'+k); });
+    ['koala','chick','rabbit','parrot','pigeon','peacock','fox','turtle','chameleon','kangaroo','penguin'].forEach(function(k){ el.classList.remove('anim-'+k); });
     el.classList.add('anim-'+key);
   });
 }
@@ -1675,7 +1994,9 @@ function renderNest(){
   }
   updateFeed();
 }
-function updateFeed(){ var e=document.getElementById('feedCount'); if(e) e.textContent=state.feed; if(typeof renderMood==='function') renderMood(); }
+function updateFeed(){ var e=document.getElementById('feedCount'); if(e) e.textContent=state.feed;
+  var fu=document.getElementById('fullStat'); if(fu) fu.textContent=(state.feed>=3?'😋 배불러':(state.feed>0?'🍽️ 보통':'🍽️ 배고파'));
+  if(typeof renderMood==='function') renderMood(); }
 function earnFeed(n){ state.feed+=n; updateFeed(); }
 function nestPop(){ var a=document.getElementById('nestActor');
   a.classList.remove('pop'); void a.offsetWidth; a.classList.add('pop'); }
@@ -1687,18 +2008,21 @@ function hatchEgg(){
   var c=CREATURES[nest.creature];
   if(!hatched.has(nest.creature)){ hatched.add(nest.creature); unlockDex(nest.creature); }
   buddyKey=nest.creature; setBuddy(); renderTownAnimals();
+  addDiary(c.emoji, c.nm+josaGa(c.nm)+' 알에서 태어났어요! 🎉');
   showReward(c.emoji,'알이 부화했어요! 🎉','두구두구… '+c.nm+josaGa(c.nm)+' 태어났어요! 이제 홈·마을에도 함께해요 💗');
 }
 function growStage(){
   var si=STAGES.indexOf(nest.stage);
   nest.stage=STAGES[si+1]; nest.growth=0; renderNest(); nestPop();
   var c=CREATURES[nest.creature];
+  addDiary(c.emoji, STAGE_KO[nest.stage]+' '+c.nm+' 단계로 자랐어요 🌱');
   showReward(c.emoji, c.nm+'가 자랐어요! 🌱', STAGE_KO[nest.stage]+' '+c.nm+' 단계가 되었어요!');
 }
 function graduateNest(){
   var c=CREATURES[nest.creature], key=nest.creature;
   if(townResidents.indexOf(key)===-1) townResidents.push(key);
   nest={stage:'egg', creature:null, hatch:0, growth:0}; renderNest(); renderTownAnimals();
+  addDiary('🎓', c.nm+' 졸업! 마을의 어엿한 주민이 됐어요 🎉');
   showReward('🎓', c.nm+' 졸업 축하해요! 🎉',c.nm+josaGa(c.nm)+' 마을의 어엿한 주민이 됐어요. 새 알로 다른 친구도 키워봐요! 🥚');
 }
 // growth is gated by 모이(feed), which is earned ONLY by studying
@@ -1719,7 +2043,7 @@ function nestAction(){
     else toast('냠냠! 맛있게 먹었어요 🌾 ('+nest.growth+'%)');
   }
 }
-var DEX_LIST=['koala','chick','parrot','pigeon','peacock','fox','rabbit'];
+var DEX_LIST=['koala','chick','parrot','pigeon','peacock','fox','rabbit','turtle','chameleon','kangaroo','penguin'];
 function dexSym(key){ return key==='koala'?'koala':CREATURES[key].sym; }
 function dexName(key){ return key==='koala'?'코알라':CREATURES[key].nm; }
 function isUnlocked(key){ return key==='koala' || hatched.has(key); }
@@ -1734,7 +2058,7 @@ function renderDex(){
       (un?'':'<span class="dex-lock">🔒</span>')+(cur?'<span class="dex-badge">💗</span>':'');
     g.appendChild(d);
   });
-  var n=1+hatched.size, dc=document.getElementById('dexCount'); if(dc) dc.textContent='('+n+' / 7)';
+  var n=1+hatched.size, dc=document.getElementById('dexCount'); if(dc) dc.textContent='('+n+' / '+DEX_LIST.length+')';
 }
 function unlockDex(key){ renderDex(); }
 function pickBuddy(key){
@@ -1749,11 +2073,16 @@ var SAVE_KEY='dreampet_save_v1';
 var _newDay=false;
 function todayKey(){ var d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
 function save(){
-  try{ localStorage.setItem(SAVE_KEY, JSON.stringify({
+  try{
+    planLog[todayKey()]=plans.map(function(p){return {t:p.t,done:p.done};});
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
     state:state, petName:petName, houseLevel:houseLevel, buddyKey:buddyKey,
     owned:Array.from(ownedItems), gifts:Array.from(townGifts),
     nest:nest, hatched:Array.from(hatched), residents:townResidents,
-    plans:plans.map(function(p){return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,done:p.done,bonus:!!p.bonus,fixed:!!p.fixed};}),
+    plans:plans.map(function(p){return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,done:p.done,awarded:!!p.awarded,bonus:!!p.bonus,fixed:!!p.fixed};}),
+    week:week, weekAnchor:weekAnchor, diary:diary,
+    journal:journal, planLog:planLog, dayMin:dayMin,
+    dream:dream, dreamHistory:dreamHistory,
     lastDay:todayKey()
   })); }catch(e){}
 }
@@ -1771,14 +2100,24 @@ function load(){
     if(d.hatched) hatched=new Set(d.hatched);
     if(d.residents) townResidents=d.residents;
     if(Array.isArray(d.plans)){
-      plans=d.plans.map(function(p){ return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:!!p.fixed,done:!!p.done}; });
+      plans=d.plans.map(function(p){ return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:!!p.fixed,done:!!p.done,awarded:!!p.awarded}; });
       sortPlans();
     }
     else if(d.plansDone) plans.forEach(function(p,i){ if(typeof d.plansDone[i]==='boolean') p.done=d.plansDone[i]; });
+    if(Array.isArray(d.week)) week=d.week;
+    if(typeof d.weekAnchor==='string') weekAnchor=d.weekAnchor;
+    if(Array.isArray(d.diary)) diary=d.diary;
+    if(d.journal&&typeof d.journal==='object') journal=d.journal;
+    if(d.planLog&&typeof d.planLog==='object') planLog=d.planLog;
+    if(d.dayMin&&typeof d.dayMin==='object') dayMin=d.dayMin;
+    if(typeof d.dream==='string') dream=d.dream;
+    if(Array.isArray(d.dreamHistory)) dreamHistory=d.dreamHistory;
+    // 주가 바뀌면 이번 주 집중 기록을 0부터 다시
+    if(weekAnchor!==mondayKey()){ week=freshWeek(); weekAnchor=mondayKey(); }
     // 날짜가 바뀌면 오늘의 꿈 리스트만 초기화 (동물·보석 등은 유지)
     if(d.lastDay && d.lastDay!==todayKey()){
-      plans.forEach(function(p){ p.done=false; });
-      state.days=(state.days||5)+1;
+      plans.forEach(function(p){ p.done=false; p.awarded=false; });
+      state.days=(state.days||1)+1;
       _newDay=true;
     }
   }catch(e){}
@@ -1818,12 +2157,16 @@ function closeInstallHelp(){ document.getElementById('installPop').classList.rem
 if(!isStandalone()) showInstallBtn();
 
 // init
+var _fresh=false; try{ _fresh=!localStorage.getItem(SAVE_KEY); }catch(e){}
 load(); sortPlans();
-renderPlans(); paint(); money(); updateExp(); renderChart();
+if(!weekAnchor) weekAnchor=mondayKey();
+if(!diary.length){ diary.push({ic:'🥚', t:petName+'와(과) 처음 만났어요! 오늘부터 함께 공부해요 🌱', day:todayKey()}); }
+renderPlans(); paint(); money(); updateExp(); renderChart(); renderDiary(); renderDream();
 buildOverlay(); setHouse(); renderTray(); renderShop(); renderNest();
 setBuddy(); renderTownAnimals(); renderTownGifts(); updateLevel(); renderMood();
 renderDex();
 if(_newDay) setTimeout(function(){ toast('새로운 하루예요! 🌅 오늘의 꿈 리스트가 새로 시작됐어요'); }, 700);
+if(_fresh) setTimeout(function(){ toast('먼저 오늘의 꿈(계획)을 정하고, 공부를 완료하면 보석·모이가 쌓여요! 📝'); }, 900);
 
 // register service worker (앱 설치 + 오프라인 실행) — only works over http/https, not local file
 if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
