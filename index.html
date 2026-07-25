@@ -371,9 +371,26 @@
   .cal .cell.has{background:#EAF7EC;}
   .cal .cell.today{outline:2px solid #8FD0A8;font-weight:800;}
   .cal .cell.future{color:#C9BEAE;cursor:default;}
-  .cal .dots{display:flex;gap:2px;height:5px;}
-  .cal .dot{width:5px;height:5px;border-radius:50%;}
-  .cal .dot.refl{background:#5BB98B;} .cal .dot.plan{background:#F2C84C;}
+  .cal .dots{display:flex;gap:3px;height:6px;align-items:center;justify-content:center;}
+  .cal .dot{width:6px;height:6px;min-width:6px;border-radius:50%;flex:none;padding:0;}
+  .cal .dot.refl{background:#5BB98B;} .cal .dot.cplan{background:#F2C84C;}
+  .dress-btn{border:none;background:rgba(255,255,255,.9);border-radius:14px;width:40px;height:40px;
+    font-size:20px;cursor:pointer;box-shadow:0 2px 8px rgba(150,120,90,.14);flex:none;}
+  .dress-stage{background:linear-gradient(#F3EEFB,#FCEFF4);border-radius:18px;padding:16px;text-align:center;
+    min-height:180px;display:flex;align-items:center;justify-content:center;position:relative;transition:outline .15s;}
+  .dress-stage.drop{outline:3px dashed #C9A8E8;outline-offset:-4px;}
+  .dress-tray{display:flex;flex-wrap:wrap;gap:8px;}
+  .dress-item{width:62px;height:70px;border-radius:14px;background:#F7F1E7;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:2px;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none;
+    font-size:10px;color:#6B5B4E;}
+  .dress-item.equipped{background:#EAF7EC;outline:2px solid #9FD9B4;}
+  .dress-item svg{width:36px;height:42px;pointer-events:none;}
+  .dress-empty{font-size:12px;color:#9A897B;padding:10px;text-align:center;line-height:1.6;}
+  .equip-chip{display:inline-flex;align-items:center;gap:5px;background:#EFE7F8;border-radius:20px;
+    padding:4px 6px 4px 11px;font-size:12px;color:#6B5B4E;margin:0 6px 6px 0;}
+  .equip-chip button{border:none;background:#D8C7EC;border-radius:50%;width:18px;height:18px;cursor:pointer;
+    font-size:10px;color:#6B4E8A;line-height:1;padding:0;}
+  .drag-ghost{position:fixed;z-index:9999;pointer-events:none;width:46px;height:46px;transform:translate(-50%,-50%);opacity:.92;}
   .dream-card{background:linear-gradient(135deg,#FFF6E4,#F1EEFB);}
   .dream-card #dreamText b{color:#C58A2E;}
   .dh-item{padding:9px 2px;border-bottom:1px dashed #EEE3D6;font-size:13px;color:#5B5348;line-height:1.5;}
@@ -768,6 +785,37 @@
     <path d="M50 55 l-5 4 l5 3.5 l5 -3.5 Z" fill="#F2A93C" stroke="#C97A2E" stroke-width="1.4" stroke-linejoin="round"/>
   </symbol>
 
+  <!-- accessories (drawn around origin, positioned with translate) -->
+  <g id="acc-ribbon">
+    <path d="M0 0 L-10 -6 L-10 6 Z" fill="#FF8FB0" stroke="#E86A90" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M0 0 L10 -6 L10 6 Z" fill="#FF8FB0" stroke="#E86A90" stroke-width="1.4" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="3.4" fill="#FFB3C8" stroke="#E86A90" stroke-width="1.4"/>
+  </g>
+  <g id="acc-pin">
+    <rect x="-1" y="0" width="2" height="11" rx="1" fill="#C9A85E"/>
+    <path d="M0 -7 L5 -1 L0 6 L-5 -1 Z" fill="#B57BE8" stroke="#8E5AC0" stroke-width="1.3" stroke-linejoin="round"/>
+    <circle cx="-1.6" cy="-2" r="1.2" fill="#fff" opacity=".85"/>
+  </g>
+  <g id="acc-crown">
+    <path d="M-9 5 L-9 -3 L-4 1 L0 -6 L4 1 L9 -3 L9 5 Z" fill="#F4C84C" stroke="#D9A62E" stroke-width="1.4" stroke-linejoin="round"/>
+    <rect x="-9" y="4" width="18" height="3" rx="1" fill="#E8B43C" stroke="#D9A62E" stroke-width="1"/>
+    <circle cx="0" cy="-4" r="1.6" fill="#E86B8A"/>
+  </g>
+  <g id="acc-bowtie">
+    <path d="M0 0 L-8 -5 L-8 5 Z" fill="#8FB6E8" stroke="#5A88C0" stroke-width="1.3" stroke-linejoin="round"/>
+    <path d="M0 0 L8 -5 L8 5 Z" fill="#8FB6E8" stroke="#5A88C0" stroke-width="1.3" stroke-linejoin="round"/>
+    <rect x="-2.2" y="-3.4" width="4.4" height="6.8" rx="1.6" fill="#6E9AD8"/>
+  </g>
+  <g id="acc-necklace">
+    <path d="M-13 -5 Q0 9 13 -5" fill="none" stroke="#F2C84C" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="0" cy="6.5" r="3.6" fill="#7FD0E8" stroke="#4FA9C8" stroke-width="1.3"/>
+    <circle cx="-1.1" cy="5.4" r="1" fill="#fff" opacity=".8"/>
+  </g>
+  <g id="acc-bracelet">
+    <path d="M-6 -1 Q0 5.5 6 -1" fill="none" stroke="#F2C84C" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="0" cy="3.4" r="2.1" fill="#FF9BB5" stroke="#E86A90" stroke-width="1"/>
+  </g>
+
   <!-- shop gifts (placed in town) -->
   <symbol id="gift-teddy" viewBox="0 0 40 44">
     <g stroke="#8A5E3E" stroke-width="2.5" stroke-linejoin="round">
@@ -829,6 +877,7 @@
       <div class="name" id="petName">코야 <span style="font-size:12px;color:#9A897B">코알라 ✏️</span></div>
       <div class="lv" id="petLv">Lv.3 · 함께한 지 5일째</div>
     </div>
+    <button class="dress-btn" onclick="openDressRoom()" title="캐릭터 꾸미기">👗</button>
     <div class="gems" onclick="openGemGuide()" style="cursor:pointer" title="보석 모으는 방법 보기">
       <div class="gem-pill">💎 <b id="gemCount">120</b></div>
       <div class="gem-pill">💚 <b id="rareCount">2</b></div>
@@ -902,7 +951,7 @@
       </div>
 
       <div class="section-title" style="justify-content:space-between">
-        <span>📋 오늘의 꿈 리스트</span>
+        <span>📋 오늘의 계획 리스트</span>
         <button class="edit-btn" id="editToggle" onclick="toggleEdit()">✏️ 편집</button>
       </div>
       <div class="card" id="planCard"></div>
@@ -1108,6 +1157,17 @@
           <div class="stat"><b id="streakStat">🔥 1일</b><span>연속 달성</span></div>
         </div>
       </div>
+      <div class="section-title" id="dressRoom">👗 드레스룸 — 꾸미기</div>
+      <div class="card">
+        <div class="dress-stage" id="dressStage">
+          <svg class="koala" id="dressPet" viewBox="0 0 100 118" style="width:150px;height:auto"><use href="#koala"/></svg>
+        </div>
+        <div id="equipChips" style="margin:12px 0 6px"></div>
+        <div style="font-size:12px;color:#9A897B;margin:10px 0 6px">가진 악세서리 — <b>캐릭터로 드래그</b>하거나 눌러서 입혀요</div>
+        <div class="dress-tray" id="dressTray"></div>
+        <p style="font-size:11px;color:#9A897B;text-align:center;margin:12px 0 0;line-height:1.6">
+          악세서리는 🛍️ 상점의 <b>꾸미기</b> 칸에서 보석으로 살 수 있어요.<br>공부해서 모은 보석으로 나만의 친구를 예쁘게 꾸며봐요 💗</p>
+      </div>
       <div class="section-title">📖 나의 동물 도감</div>
       <div class="card">
         <div class="dex" id="dexGrid"></div>
@@ -1122,11 +1182,13 @@
     <section class="view" id="view-shop">
       <div class="section-title">🛍️ 보석 상점</div>
       <div class="shop-tabs">
-        <div class="shop-tab on" onclick="shopTab(0,this)">💎 일반 보석</div>
-        <div class="shop-tab" onclick="shopTab(1,this)">💚 희귀 보석</div>
+        <div class="shop-tab on" onclick="shopTab(0,this)">💎 마을</div>
+        <div class="shop-tab" onclick="shopTab(1,this)">💚 희귀</div>
+        <div class="shop-tab" onclick="shopTab(2,this)">👗 꾸미기</div>
       </div>
       <div id="shop0" class="goods"></div>
       <div id="shop1" class="goods" style="display:none"></div>
+      <div id="shop2" class="goods" style="display:none"></div>
       <p style="font-size:12px;color:#9A897B;text-align:center;margin-top:14px">
         💎 일반 보석은 계획을 완료하면, 💚 희귀 보석은 미룬 계획을 다시 해내면 얻어요!
       </p>
@@ -1187,7 +1249,7 @@
     <button data-v="diary" onclick="go('diary',this)"><span class="ni">📔</span>돌아보기</button>
   </nav>
 
-  <div class="ver-tag">v2.5</div>
+  <div class="ver-tag">v2.7</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -1212,7 +1274,7 @@
   <div class="reward-pop" id="addPop" onclick="closeAddPlan()">
     <div class="reward-card" onclick="event.stopPropagation()">
       <div style="font-size:40px" class="big">✏️</div>
-      <div style="font-size:17px;margin:4px 0 10px" id="addPopTitle">새로운 꿈 추가하기</div>
+      <div style="font-size:17px;margin:4px 0 10px" id="addPopTitle">새로운 계획 추가하기</div>
       <input class="name-input" id="planInput" maxlength="30" placeholder="예: 수학 문제집 2쪽 풀기">
       <div style="font-size:12px;color:#9A897B;text-align:left;margin:8px 2px 5px">종류를 골라요</div>
       <div class="chip-wrap" id="catRow"></div>
@@ -1240,7 +1302,7 @@
       <div style="text-align:left;background:#F3FAF4;border-radius:16px;padding:13px 15px;margin-bottom:10px">
         <div style="font-weight:700;color:#3E8E5E;font-size:14px;margin-bottom:7px">💎 일반 보석</div>
         <div style="font-size:13px;line-height:1.95;color:#5B5348">
-          ✔️ 오늘의 꿈 1개 완료 &nbsp;→&nbsp; <b>💎 +15</b><br>
+          ✔️ 오늘의 계획 1개 완료 &nbsp;→&nbsp; <b>💎 +15</b><br>
           🍅 집중 타이머 끝까지 완료 &nbsp;→&nbsp; <b>💎 +30</b><br>
           ⭐ 보완 미션 완료 &nbsp;→&nbsp; <b>💎 +10</b>
         </div>
@@ -1249,7 +1311,7 @@
         <div style="font-weight:700;color:#C56C8E;font-size:14px;margin-bottom:7px">💚 희귀 보석 <span style="font-size:11px;color:#B89AA5">(귀한 보석이에요)</span></div>
         <div style="font-size:13px;line-height:1.95;color:#5B5348">
           ⭐ 어제 못한 걸 오늘 해내면 &nbsp;→&nbsp; <b>💚 +1</b><br>
-          🌟 오늘의 꿈을 <b>하나도 빠짐없이</b> 모두 완료 &nbsp;→&nbsp; <b>💚 +1</b>
+          🌟 오늘의 계획을 <b>하나도 빠짐없이</b> 모두 완료 &nbsp;→&nbsp; <b>💚 +1</b>
         </div>
       </div>
       <div style="font-size:12px;color:#9A897B;margin-top:11px;line-height:1.6">💡 모은 보석으로 <b>마을 꾸미기</b>와 <b>선물</b>을 살 수 있어요.</div>
@@ -1343,11 +1405,11 @@ function renderPlans(){
       right;
     c.appendChild(d);
   });
-  var add=document.createElement('button'); add.className='add-plan'; add.textContent='＋ 새로운 꿈 추가하기';
+  var add=document.createElement('button'); add.className='add-plan'; add.textContent='＋ 새 계획 추가하기';
   add.onclick=openAddPlan;
   c.appendChild(add);
 }
-function delPlan(i){ if(!plans[i]) return; plans.splice(i,1); renderPlans(); save(); toast('꿈을 삭제했어요'); }
+function delPlan(i){ if(!plans[i]) return; plans.splice(i,1); renderPlans(); save(); toast('계획을 삭제했어요'); }
 function togglePin(i){ var p=plans[i]; if(!p) return; p.fixed=!p.fixed;
   plans.splice(i,1); if(p.fixed) plans.unshift(p); else plans.push(p);
   sortPlans(); renderPlans(); save();
@@ -1370,7 +1432,7 @@ function renderPomoRow(){ var r=document.getElementById('pomoRow'); r.innerHTML=
 var editingIdx=-1;
 function openAddPlan(){
   editingIdx=-1;
-  document.getElementById('addPopTitle').textContent='새로운 꿈 추가하기';
+  document.getElementById('addPopTitle').textContent='새로운 계획 추가하기';
   document.getElementById('addPopBtn').textContent='추가하기 ✨';
   document.getElementById('planInput').value=''; newCatIdx=0; newPomo=1;
   renderCatRow(); renderPomoRow();
@@ -1379,7 +1441,7 @@ function openAddPlan(){
 }
 function editPlan(i){
   var p=plans[i]; if(!p) return; editingIdx=i;
-  document.getElementById('addPopTitle').textContent='꿈 수정하기';
+  document.getElementById('addPopTitle').textContent='계획 수정하기';
   document.getElementById('addPopBtn').textContent='수정 완료 ✨';
   document.getElementById('planInput').value=p.t;
   var ci=CATS.findIndex(function(c){return c.cat===p.cat;}); newCatIdx=ci<0?0:ci; newPomo=p.pomo||1;
@@ -1390,14 +1452,14 @@ function editPlan(i){
 function closeAddPlan(){ document.getElementById('addPop').classList.remove('show'); }
 function savePlan(){
   var v=document.getElementById('planInput').value.trim();
-  if(!v){ toast('꿈(할 일)을 입력해 주세요 😊'); return; }
+  if(!v){ toast('계획(할 일)을 입력해 주세요 😊'); return; }
   var c=CATS[newCatIdx];
   if(editingIdx>=0 && plans[editingIdx]){
     var p=plans[editingIdx]; p.t=v; p.cat=c.cat; p.emoji=c.emoji; p.color=c.color; p.pomo=newPomo;
-    renderPlans(); save(); closeAddPlan(); toast('꿈을 수정했어요! ✏️');
+    renderPlans(); save(); closeAddPlan(); toast('계획을 수정했어요! ✏️');
   } else {
     plans.push({t:v, cat:c.cat, emoji:c.emoji, color:c.color, pomo:newPomo, done:false, fixed:false});
-    sortPlans(); renderPlans(); save(); closeAddPlan(); toast('새로운 꿈을 추가했어요! ✨');
+    sortPlans(); renderPlans(); save(); closeAddPlan(); toast('새로운 계획을 추가했어요! ✨');
   }
 }
 function togglePlan(i){
@@ -1426,8 +1488,8 @@ function checkAllPlansDone(){
   if(allDone && state.rareDay!==todayKey()){
     state.rareDay=todayKey();
     state.rare+=1; money();
-    addDiary('🌟','오늘의 꿈을 모두 완료! 💚 희귀 보석 획득');
-    showReward('🌟','오늘의 꿈 모두 완료!','정말 대단해요! 💚 희귀 보석 +1을 받았어요 ✨'); save();
+    addDiary('🌟','오늘의 계획을 모두 완료! 💚 희귀 보석 획득');
+    showReward('🌟','오늘의 계획 모두 완료!','정말 대단해요! 💚 희귀 보석 +1을 받았어요 ✨'); save();
   }
 }
 
@@ -1495,8 +1557,8 @@ function renderMood(){
   // koala face changes with mood (smile / eyes closed when sleepy) — home + character room
   if(buddyKey==='koala' && !running){
     var face = m==='sleepy' ? 'koala-sleep' : (m==='happy'?'koala-happy':'koala');
-    setUseHref(document.getElementById('homePet'), face);
-    setUseHref(document.getElementById('roomPet'), face);
+    renderPetSvg('homePet', face);
+    renderPetSvg('roomPet', face);
   }
 }
 function idleTick(){
@@ -1562,17 +1624,24 @@ var shopItems=[
   {row:1,ic:'🌈',nm:'무지개 정원',cost:5,cur:'rare',reqLv:3,gift:'garden'},
   {row:1,ic:'👑',nm:'반짝 왕관',cost:6,cur:'rare',reqLv:4,gift:'crown'},
   {row:1,ic:'🏰',nm:'화려한 성',cost:8,cur:'rare',reqLv:5,gift:'castle'},
-  {row:1,ic:'🗼',nm:'반짝 등대',cost:7,cur:'rare',reqLv:6,gift:'lighthouse'}
+  {row:1,ic:'🗼',nm:'반짝 등대',cost:7,cur:'rare',reqLv:6,gift:'lighthouse'},
+  {row:2,ic:'🎀',nm:'리본',cost:20,cur:'normal',reqLv:1,acc:'ribbon'},
+  {row:2,ic:'💎',nm:'보석삔',cost:20,cur:'normal',reqLv:1,acc:'pin'},
+  {row:2,ic:'📿',nm:'팔찌',cost:20,cur:'normal',reqLv:1,acc:'bracelet'},
+  {row:2,ic:'🎗️',nm:'나비넥타이',cost:25,cur:'normal',reqLv:2,acc:'bowtie'},
+  {row:2,ic:'💍',nm:'목걸이',cost:30,cur:'normal',reqLv:2,acc:'necklace'},
+  {row:2,ic:'👑',nm:'왕관',cost:35,cur:'normal',reqLv:3,acc:'crown'}
 ];
 function renderShop(){
-  [0,1].forEach(function(row){
+  [0,1,2].forEach(function(row){
     var box=document.getElementById('shop'+row); if(!box) return; box.innerHTML='';
     shopItems.forEach(function(it,idx){
       if(it.row!==row) return;
       var locked=state.level<it.reqLv;
+      var ownedA=it.acc&&ownedAcc.has(it.acc);
       var cur=it.cur==='rare'?'💚':'💎';
-      var el=document.createElement('div'); el.className='good'+(locked?' locked':'');
-      var btn = locked ? '🔒 Lv.'+it.reqLv : (it.feed?'먹이 주기':'사서 놓기');
+      var el=document.createElement('div'); el.className='good'+((locked||ownedA)?' locked':'');
+      var btn = ownedA ? '보유 중' : (locked ? '🔒 Lv.'+it.reqLv : (it.acc?'사기':(it.feed?'먹이 주기':'사서 놓기')));
       el.innerHTML='<div class="ic">'+it.ic+'</div><div class="nm">'+it.nm+'</div>'+
         '<div class="price">'+cur+' '+it.cost+'</div>'+
         '<button class="buy" onclick="buyItem('+idx+')">'+btn+'</button>';
@@ -1583,12 +1652,18 @@ function renderShop(){
 function buyItem(idx){
   var it=shopItems[idx];
   if(state.level<it.reqLv){ toast('Lv.'+it.reqLv+'부터 살 수 있어요 🔒 공부해서 레벨을 올려요!'); return; }
+  if(it.acc){
+    if(ownedAcc.has(it.acc)){ toast('이미 가진 악세서리예요 😊 드레스룸에서 입혀보세요!'); return; }
+    if(state.gems<it.cost){ toast('보석이 부족해요 🥲 계획을 완료해봐요!'); return; }
+    state.gems-=it.cost; money(); ownedAcc.add(it.acc); pulsePet(); renderShop(); renderDress();
+    showReward('🎀', ACC_DEFS[it.acc].nm+' 구입 완료!', '드레스룸(👗)에서 드래그해 대표 친구에게 입혀보세요!'); save();
+    return;
+  }
   buy(it.cost, it.cur, it.nm, it.gift);
 }
 function shopTab(i,el){
   document.querySelectorAll('.shop-tab').forEach(x=>x.classList.remove('on')); el.classList.add('on');
-  document.getElementById('shop0').style.display = i===0?'grid':'none';
-  document.getElementById('shop1').style.display = i===1?'grid':'none';
+  [0,1,2].forEach(function(n){ var b=document.getElementById('shop'+n); if(b) b.style.display=(n===i?'grid':'none'); });
 }
 function buy(cost,type,name,gift){
   if(type==='normal'){
@@ -1723,7 +1798,7 @@ function renderCalendar(){
     var future=afterMonth||(thisMonth && d>td.getDate());
     var cell=document.createElement('div');
     cell.className='cell'+((hasRefl||hasPlan)?' has':'')+((key===tk)?' today':'')+(future?' future':'');
-    cell.innerHTML='<span>'+d+'</span><div class="dots">'+(hasRefl?'<span class="dot refl"></span>':'')+(hasPlan?'<span class="dot plan"></span>':'')+'</div>';
+    cell.innerHTML='<span>'+d+'</span><div class="dots">'+(hasRefl?'<span class="dot refl"></span>':'')+(hasPlan?'<span class="dot cplan"></span>':'')+'</div>';
     if(!future){ (function(k){ cell.onclick=function(){ openDay(k); }; })(key); }
     grid.appendChild(cell);
   }
@@ -1893,13 +1968,101 @@ function applyPetAnim(){
     el.classList.add('anim-'+key);
   });
 }
+// ---------- 악세서리 (드레스룸) ----------
+var ownedAcc=new Set(), equipAcc=new Set();
+var ACC_DEFS={
+  ribbon:{nm:'리본',sym:'acc-ribbon',slot:'head-side'},
+  pin:{nm:'보석삔',sym:'acc-pin',slot:'head-side2'},
+  bracelet:{nm:'팔찌',sym:'acc-bracelet',slot:'arm'},
+  bowtie:{nm:'나비넥타이',sym:'acc-bowtie',slot:'neck'},
+  necklace:{nm:'목걸이',sym:'acc-necklace',slot:'chest'},
+  crown:{nm:'왕관',sym:'acc-crown',slot:'head-top'}
+};
+var ACC_ORDER=['ribbon','pin','bracelet','bowtie','necklace','crown'];
+var ACC_HEAD={koala:20,chick:28,parrot:24,pigeon:22,peacock:34,fox:22,rabbit:34,turtle:24,chameleon:24,kangaroo:34,penguin:24};
+function accPos(slot){
+  var hy=ACC_HEAD[buddyKey||'koala']||22;
+  if(slot==='head-top') return {x:50,y:hy-3};
+  if(slot==='head-side') return {x:30,y:hy+2};
+  if(slot==='head-side2') return {x:70,y:hy+2};
+  if(slot==='neck') return {x:50,y:82};
+  if(slot==='chest') return {x:50,y:88};
+  if(slot==='arm') return {x:29,y:100};
+  return {x:50,y:50};
+}
+function accUses(){
+  var s='';
+  ACC_ORDER.forEach(function(k){ if(!equipAcc.has(k)) return; var d=ACC_DEFS[k]; var p=accPos(d.slot);
+    s+='<use href="#'+d.sym+'" xlink:href="#'+d.sym+'" transform="translate('+p.x+' '+p.y+')"/>'; });
+  return s;
+}
+function renderPetSvg(id,sym){ var el=document.getElementById(id); if(!el) return;
+  el.innerHTML='<use href="#'+sym+'" xlink:href="#'+sym+'"/>'+accUses(); }
 function setBuddy(){
   var bd=currentBuddy();
-  setUseHref(document.getElementById('homePet'), bd.sym);
-  setUseHref(document.getElementById('roomPet'), bd.sym);
+  renderPetSvg('homePet', bd.sym);
+  renderPetSvg('roomPet', bd.sym);
+  renderPetSvg('dressPet', bd.sym);
   setUseHref(document.querySelector('#miniPet svg'), bd.sym);
   applyPetAnim();
   applyName();
+}
+function refreshPets(){ var bd=currentBuddy();
+  renderPetSvg('homePet',bd.sym); renderPetSvg('roomPet',bd.sym); renderPetSvg('dressPet',bd.sym);
+  if(typeof renderMood==='function') renderMood(); }
+function equipAcc_(k){ if(!ownedAcc.has(k)) return; equipAcc.add(k); onEquipChange(); toast(ACC_DEFS[k].nm+'을(를) 입혔어요! 💗'); }
+function unequipAcc_(k){ equipAcc.delete(k); onEquipChange(); }
+function toggleEquipAcc(k){ if(equipAcc.has(k)) unequipAcc_(k); else equipAcc_(k); }
+function onEquipChange(){ renderDress(); refreshPets(); save(); }
+function renderDress(){
+  renderPetSvg('dressPet', currentBuddy().sym);
+  var chips=document.getElementById('equipChips');
+  if(chips){
+    var worn=ACC_ORDER.filter(function(k){return equipAcc.has(k);});
+    chips.innerHTML = worn.length ? ('<div style="font-size:12px;color:#9A897B;margin-bottom:6px">착용 중 (✕로 벗기)</div>'+worn.map(function(k){return '<span class="equip-chip">'+ACC_DEFS[k].nm+' <button onclick="unequipAcc_(\''+k+'\')">✕</button></span>';}).join('')) : '<div style="font-size:12px;color:#9A897B">아직 착용한 악세서리가 없어요</div>';
+  }
+  var tray=document.getElementById('dressTray');
+  if(tray){
+    var owned=ACC_ORDER.filter(function(k){return ownedAcc.has(k);});
+    if(!owned.length){ tray.innerHTML='<div class="dress-empty">아직 가진 악세서리가 없어요.<br>🛍️ 상점 → 꾸미기에서 보석으로 살 수 있어요!</div>'; }
+    else {
+      tray.innerHTML=owned.map(function(k){ var d=ACC_DEFS[k];
+        return '<div class="dress-item'+(equipAcc.has(k)?' equipped':'')+'" data-acc="'+k+'"><svg viewBox="-14 -12 28 26"><use href="#'+d.sym+'"/></svg><span>'+d.nm+'</span></div>'; }).join('');
+      [].forEach.call(tray.querySelectorAll('.dress-item'), function(el){ bindDressItem(el, el.getAttribute('data-acc')); });
+    }
+  }
+}
+var _dragMoved=false;
+function bindDressItem(el, key){
+  el.addEventListener('click', function(){ if(_dragMoved){ return; } toggleEquipAcc(key); });
+  el.addEventListener('pointerdown', function(e){ startAccDrag(e, key); });
+}
+function startAccDrag(e, key){
+  var d=ACC_DEFS[key], moved=false, sx=e.clientX, sy=e.clientY;
+  var ghost=document.createElement('div'); ghost.className='drag-ghost';
+  ghost.innerHTML='<svg viewBox="-14 -12 28 26" width="46" height="46"><use href="#'+d.sym+'"/></svg>';
+  ghost.style.left=sx+'px'; ghost.style.top=sy+'px'; document.body.appendChild(ghost);
+  function stageRect(){ var s=document.getElementById('dressStage'); return s?s.getBoundingClientRect():null; }
+  function over(x,y){ var r=stageRect(); return r&&x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom; }
+  function mv(ev){ var x=ev.clientX,y=ev.clientY; ghost.style.left=x+'px'; ghost.style.top=y+'px';
+    if(Math.abs(x-sx)>6||Math.abs(y-sy)>6) moved=true;
+    var s=document.getElementById('dressStage'); if(s) s.classList.toggle('drop', over(x,y)); }
+  function up(ev){
+    document.removeEventListener('pointermove',mv); document.removeEventListener('pointerup',up);
+    var s=document.getElementById('dressStage'); if(s) s.classList.remove('drop');
+    if(over(ev.clientX,ev.clientY)) equipAcc_(key);
+    if(ghost.parentNode) ghost.parentNode.removeChild(ghost);
+    _dragMoved=moved; setTimeout(function(){ _dragMoved=false; }, 60);
+  }
+  document.addEventListener('pointermove',mv); document.addEventListener('pointerup',up);
+}
+function openDressRoom(){
+  document.querySelectorAll('.view').forEach(function(x){x.classList.remove('active');});
+  document.getElementById('view-pet').classList.add('active');
+  document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('on');});
+  var pb=document.querySelector('.nav button[data-v="pet"]'); if(pb) pb.classList.add('on');
+  renderDress();
+  setTimeout(function(){ var s=document.getElementById('dressRoom'); if(s) s.scrollIntoView({behavior:'smooth',block:'start'}); }, 120);
 }
 // ---------- 하트 효과 & 쓰다듬기 ----------
 function spawnHearts(n){
@@ -2078,6 +2241,7 @@ function save(){
     localStorage.setItem(SAVE_KEY, JSON.stringify({
     state:state, petName:petName, houseLevel:houseLevel, buddyKey:buddyKey,
     owned:Array.from(ownedItems), gifts:Array.from(townGifts),
+    ownedAcc:Array.from(ownedAcc), equipAcc:Array.from(equipAcc),
     nest:nest, hatched:Array.from(hatched), residents:townResidents,
     plans:plans.map(function(p){return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,done:p.done,awarded:!!p.awarded,bonus:!!p.bonus,fixed:!!p.fixed};}),
     week:week, weekAnchor:weekAnchor, diary:diary,
@@ -2096,6 +2260,8 @@ function load(){
     if(d.buddyKey) buddyKey=d.buddyKey;
     if(d.owned) ownedItems=new Set(d.owned);
     if(d.gifts) townGifts=new Set(d.gifts);
+    if(d.ownedAcc) ownedAcc=new Set(d.ownedAcc);
+    if(d.equipAcc) equipAcc=new Set(d.equipAcc);
     if(d.nest) nest=d.nest;
     if(d.hatched) hatched=new Set(d.hatched);
     if(d.residents) townResidents=d.residents;
@@ -2164,9 +2330,9 @@ if(!diary.length){ diary.push({ic:'🥚', t:petName+'와(과) 처음 만났어�
 renderPlans(); paint(); money(); updateExp(); renderChart(); renderDiary(); renderDream();
 buildOverlay(); setHouse(); renderTray(); renderShop(); renderNest();
 setBuddy(); renderTownAnimals(); renderTownGifts(); updateLevel(); renderMood();
-renderDex();
-if(_newDay) setTimeout(function(){ toast('새로운 하루예요! 🌅 오늘의 꿈 리스트가 새로 시작됐어요'); }, 700);
-if(_fresh) setTimeout(function(){ toast('먼저 오늘의 꿈(계획)을 정하고, 공부를 완료하면 보석·모이가 쌓여요! 📝'); }, 900);
+renderDex(); renderDress();
+if(_newDay) setTimeout(function(){ toast('새로운 하루예요! 🌅 오늘의 계획 리스트가 새로 시작됐어요'); }, 700);
+if(_fresh) setTimeout(function(){ toast('먼저 오늘의 계획을 정하고, 공부를 완료하면 보석·모이가 쌓여요! 📝'); }, 900);
 
 // register service worker (앱 설치 + 오프라인 실행) — only works over http/https, not local file
 if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
