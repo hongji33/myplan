@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="꿈키우기">
+<meta name="apple-mobile-web-app-title" content="꿈 키우기">
 <meta name="theme-color" content="#FCE7D2">
 <title>나의 꿈 키우기</title>
 <link rel="manifest" href="manifest.json">
@@ -76,8 +76,15 @@
   }
 
   /* screen area */
-  .screen{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 96px;}
+  .screen{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 96px;-webkit-overflow-scrolling:touch;}
   .screen::-webkit-scrollbar{display:none;}
+  /* 데스크톱에서는 스크롤바를 보이게 (모바일은 그대로 숨김) */
+  @media (min-width:431px){
+    .screen{scrollbar-width:thin;scrollbar-color:rgba(150,120,90,.35) transparent;}
+    .screen::-webkit-scrollbar{display:block;width:9px;}
+    .screen::-webkit-scrollbar-thumb{background:rgba(150,120,90,.35);border-radius:8px;border:2px solid transparent;background-clip:padding-box;}
+    .screen::-webkit-scrollbar-thumb:hover{background:rgba(150,120,90,.55);background-clip:padding-box;}
+  }
   .view{display:none;animation:fade .35s ease;}
   .view.active{display:block;}
   @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
@@ -1341,7 +1348,7 @@
     <button data-v="diary" onclick="go('diary',this)"><span class="ni">📔</span>돌아보기</button>
   </nav>
 
-  <div class="ver-tag">v3.1</div>
+  <div class="ver-tag">v3.3</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -2418,6 +2425,18 @@ function showInstallHelp(){
 }
 function closeInstallHelp(){ document.getElementById('installPop').classList.remove('show'); }
 if(!isStandalone()) showInstallBtn();
+
+// 데스크톱: 폰 바깥 배경에 마우스를 두고 휠을 굴려도 내용이 스크롤되게 (모바일 영향 없음)
+(function(){
+  window.addEventListener('wheel', function(e){
+    var sc=document.querySelector('.screen'); if(!sc) return;
+    if(sc.contains(e.target)) return; // 스크린 안에서는 브라우저 기본 스크롤에 맡김
+    var pop=e.target && e.target.closest ? e.target.closest('.reward-pop') : null;
+    if(pop && pop.classList.contains('show')) return; // 팝업 위에서는 팝업 스크롤 유지
+    sc.scrollTop += e.deltaY;
+    e.preventDefault();
+  }, {passive:false});
+})();
 
 // init
 var _fresh=false; try{ _fresh=!localStorage.getItem(SAVE_KEY); }catch(e){}

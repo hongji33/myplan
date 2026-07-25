@@ -1,6 +1,6 @@
 {
   "name": "나의 꿈 키우기",
-  "short_name": "꿈키우기",
+  "short_name": "꿈 키우기",
   "description": "공부하며 동물을 키우는 갓생 플래너",
   "lang": "ko",
   "start_url": "./index.html",
