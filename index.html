@@ -194,6 +194,11 @@
   .anim-chameleon{animation:sway 2.8s ease-in-out infinite;}
   .anim-kangaroo{animation:hop2 1.1s ease-in-out infinite;}
   .anim-penguin{animation:waddle 1s ease-in-out infinite;}
+  .anim-redpanda{animation:wag .9s ease-in-out infinite;}
+  .anim-fennec{animation:bob 2.6s ease-in-out infinite;}
+  .anim-panda{animation:bob 3s ease-in-out infinite;}
+  .anim-seal{animation:sway 2.4s ease-in-out infinite;}
+  .anim-otter{animation:bob 2.8s ease-in-out infinite;}
   @keyframes waddle{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
   .koala-home.studying,.koala-room.studying{animation:study 1.5s ease-in-out infinite;}
   @keyframes hop{0%,55%,100%{transform:translateY(0) scaleY(1);}18%{transform:translateY(-2px) scaleY(.9);}42%{transform:translateY(-22px) scaleY(1.06);}}
@@ -719,20 +724,21 @@
 
   <!-- friend: turtle -->
   <symbol id="turtle" viewBox="0 0 100 118">
+    <!-- 등껍질: 몸통 뒤로 살짝만 보이게 -->
+    <ellipse cx="50" cy="80" rx="36" ry="29" fill="#E0B36A" stroke="#B5843E" stroke-width="3"/>
+    <g stroke="#B5843E" stroke-width="1.6" fill="none"><path d="M50 54 V106"/><path d="M18 78 Q50 86 82 78"/><path d="M30 64 L41 78 M70 64 L59 78 M26 92 L39 88 M74 92 L61 88"/></g>
     <g stroke="#4E8B4A" stroke-width="3" stroke-linejoin="round">
-      <ellipse cx="50" cy="99" rx="22" ry="16" fill="#8FCB79"/>
-      <ellipse cx="50" cy="55" rx="40" ry="33" fill="#93CE7E"/>
+      <ellipse cx="50" cy="90" rx="20" ry="16" fill="#8FCB79"/>
+      <ellipse cx="50" cy="52" rx="35" ry="30" fill="#93CE7E"/>
     </g>
     <g stroke="#4E8B4A" stroke-width="3" stroke-linejoin="round">
-      <ellipse cx="26" cy="98" rx="7" ry="8" fill="#7FBF6A"/><ellipse cx="74" cy="98" rx="7" ry="8" fill="#7FBF6A"/>
+      <ellipse cx="24" cy="95" rx="7" ry="8" fill="#7FBF6A"/><ellipse cx="76" cy="95" rx="7" ry="8" fill="#7FBF6A"/>
     </g>
-    <g stroke="#4E8B4A" stroke-width="2.5"><ellipse cx="40" cy="114" rx="7" ry="5" fill="#6BA85A"/><ellipse cx="60" cy="114" rx="7" ry="5" fill="#6BA85A"/></g>
-    <path d="M50 76 Q33 76 32 91 Q40 105 50 105 Q60 105 68 91 Q67 76 50 76 Z" fill="#E0B36A" stroke="#B5843E" stroke-width="2.5"/>
-    <g stroke="#B5843E" stroke-width="1.5" fill="none"><path d="M50 78 V103"/><path d="M41 83 L34 88 M59 83 L66 88 M41 99 L34 96 M59 99 L66 96"/></g>
-    <ellipse cx="27" cy="64" rx="7" ry="5" fill="#F4AEBD"/><ellipse cx="73" cy="64" rx="7" ry="5" fill="#F4AEBD"/>
-    <circle cx="40" cy="56" r="4.6" fill="#3E4A38"/><circle cx="60" cy="56" r="4.6" fill="#3E4A38"/>
-    <circle cx="41.5" cy="54.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="54.4" r="1.5" fill="#fff"/>
-    <path d="M44 63 Q50 67 56 63" stroke="#4E8B4A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <g stroke="#4E8B4A" stroke-width="2.5"><ellipse cx="41" cy="114" rx="7" ry="5" fill="#6BA85A"/><ellipse cx="59" cy="114" rx="7" ry="5" fill="#6BA85A"/></g>
+    <ellipse cx="28" cy="60" rx="7" ry="5" fill="#F4AEBD"/><ellipse cx="72" cy="60" rx="7" ry="5" fill="#F4AEBD"/>
+    <circle cx="40" cy="52" r="4.6" fill="#3E4A38"/><circle cx="60" cy="52" r="4.6" fill="#3E4A38"/>
+    <circle cx="41.5" cy="50.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="50.4" r="1.5" fill="#fff"/>
+    <path d="M44 59 Q50 63 56 59" stroke="#4E8B4A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
   </symbol>
   <!-- friend: chameleon -->
   <symbol id="chameleon" viewBox="0 0 100 118">
@@ -753,12 +759,13 @@
   </symbol>
   <!-- friend: kangaroo -->
   <symbol id="kangaroo" viewBox="0 0 100 118">
+    <path d="M58 92 Q96 96 98 116 Q98 119 93 117 Q92 106 76 100 Q66 96 56 98 Z" fill="#D0985E" stroke="#B57A45" stroke-width="3" stroke-linejoin="round"/>
     <g stroke="#B57A45" stroke-width="3" stroke-linejoin="round">
-      <ellipse cx="32" cy="20" rx="6" ry="15" fill="#DDA96E"/><ellipse cx="68" cy="20" rx="6" ry="15" fill="#DDA96E"/>
+      <ellipse cx="34" cy="28" rx="5.5" ry="10" fill="#DDA96E"/><ellipse cx="66" cy="28" rx="5.5" ry="10" fill="#DDA96E"/>
       <ellipse cx="50" cy="100" rx="23" ry="16" fill="#DDA96E"/>
-      <ellipse cx="50" cy="57" rx="37" ry="31" fill="#E7B87E"/>
+      <ellipse cx="50" cy="58" rx="37" ry="31" fill="#E7B87E"/>
     </g>
-    <ellipse cx="32" cy="20" rx="2.6" ry="9" fill="#F4C9AE"/><ellipse cx="68" cy="20" rx="2.6" ry="9" fill="#F4C9AE"/>
+    <ellipse cx="34" cy="29" rx="2.4" ry="6" fill="#F4C9AE"/><ellipse cx="66" cy="29" rx="2.4" ry="6" fill="#F4C9AE"/>
     <g stroke="#B57A45" stroke-width="3" stroke-linejoin="round"><ellipse cx="26" cy="94" rx="6" ry="8" fill="#D0985E"/><ellipse cx="74" cy="94" rx="6" ry="8" fill="#D0985E"/></g>
     <g stroke="#B57A45" stroke-width="2.5"><ellipse cx="40" cy="114" rx="8" ry="5" fill="#C48F55"/><ellipse cx="60" cy="114" rx="8" ry="5" fill="#C48F55"/></g>
     <path d="M50 80 Q36 80 35 94 Q42 106 50 106 Q58 106 65 94 Q64 80 50 80 Z" fill="#F2D8B4" stroke="#C79A66" stroke-width="2.5"/>
@@ -771,18 +778,103 @@
   </symbol>
   <!-- friend: penguin -->
   <symbol id="penguin" viewBox="0 0 100 118">
-    <g stroke="#33465E" stroke-width="3" stroke-linejoin="round">
-      <ellipse cx="18" cy="72" rx="8" ry="19" fill="#3E5470"/><ellipse cx="82" cy="72" rx="8" ry="19" fill="#3E5470"/>
-      <ellipse cx="50" cy="99" rx="23" ry="16" fill="#46607E"/>
-      <ellipse cx="50" cy="54" rx="38" ry="33" fill="#4C6684"/>
-    </g>
-    <path d="M50 34 Q26 40 26 74 Q26 96 50 96 Q74 96 74 74 Q74 40 50 34 Z" fill="#FBF7F1"/>
     <g stroke="#C97A2E" stroke-width="2.5" stroke-linejoin="round" fill="#F2A93C">
-      <path d="M40 110 l-6 5 l7 1 l3 -5 Z"/><path d="M60 110 l6 5 l-7 1 l-3 -5 Z"/></g>
-    <ellipse cx="30" cy="58" rx="6" ry="4.5" fill="#F7C0CE"/><ellipse cx="70" cy="58" rx="6" ry="4.5" fill="#F7C0CE"/>
-    <circle cx="41" cy="50" r="4.6" fill="#2E3A4A"/><circle cx="59" cy="50" r="4.6" fill="#2E3A4A"/>
-    <circle cx="42.5" cy="48.4" r="1.5" fill="#fff"/><circle cx="60.5" cy="48.4" r="1.5" fill="#fff"/>
-    <path d="M50 55 l-5 4 l5 3.5 l5 -3.5 Z" fill="#F2A93C" stroke="#C97A2E" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M40 101 l-8 11 l9 1 l4 -7 Z"/><path d="M60 101 l8 11 l-9 1 l-4 -7 Z"/></g>
+    <g stroke="#33465E" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="16" cy="62" rx="6" ry="15" fill="#3E5470"/><ellipse cx="84" cy="62" rx="6" ry="15" fill="#3E5470"/>
+      <ellipse cx="50" cy="58" rx="33" ry="46" fill="#4C6684"/>
+    </g>
+    <path d="M50 18 Q21 24 21 64 Q21 100 50 102 Q79 100 79 64 Q79 24 50 18 Z" fill="#FBF7F1"/>
+    <ellipse cx="31" cy="52" rx="6" ry="4.5" fill="#F7C0CE"/><ellipse cx="69" cy="52" rx="6" ry="4.5" fill="#F7C0CE"/>
+    <circle cx="42" cy="44" r="4.6" fill="#2E3A4A"/><circle cx="58" cy="44" r="4.6" fill="#2E3A4A"/>
+    <circle cx="43.5" cy="42.4" r="1.5" fill="#fff"/><circle cx="59.5" cy="42.4" r="1.5" fill="#fff"/>
+    <path d="M50 49 l-5 4 l5 3.5 l5 -3.5 Z" fill="#F2A93C" stroke="#C97A2E" stroke-width="1.4" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- friend: red panda (레서판다) -->
+  <symbol id="redpanda" viewBox="0 0 100 118">
+    <g stroke="#8A4B2E" stroke-width="3" stroke-linejoin="round">
+      <path d="M70 90 Q100 92 96 60 Q94 46 84 48 Q92 62 84 78 Q78 90 68 86 Z" fill="#C86B45"/>
+      <ellipse cx="50" cy="99" rx="22" ry="16" fill="#C86B45"/>
+      <path d="M18 40 L24 15 L45 32 Z" fill="#C86B45"/><path d="M82 40 L76 15 L55 32 Z" fill="#C86B45"/>
+      <path d="M23 32 L27 19 L35 30 Z" fill="#F3D8C6"/><path d="M77 32 L73 19 L65 30 Z" fill="#F3D8C6"/>
+      <ellipse cx="50" cy="56" rx="40" ry="33" fill="#D9814E"/>
+    </g>
+    <g stroke="#8A4B2E" stroke-width="2.4" fill="none"><path d="M80 58 Q88 60 89 66"/><path d="M78 72 Q86 74 87 80"/></g>
+    <g stroke="#8A4B2E" stroke-width="3"><ellipse cx="28" cy="96" rx="7" ry="9" fill="#A65636"/><ellipse cx="72" cy="96" rx="7" ry="9" fill="#A65636"/></g>
+    <g stroke="#8A4B2E" stroke-width="2.5"><ellipse cx="41" cy="114" rx="6.5" ry="4.5" fill="#5E3B28"/><ellipse cx="59" cy="114" rx="6.5" ry="4.5" fill="#5E3B28"/></g>
+    <path d="M50 42 Q31 44 31 60 Q31 76 50 78 Q69 76 69 60 Q69 44 50 42 Z" fill="#FBF3EA"/>
+    <ellipse cx="30" cy="64" rx="6" ry="4.5" fill="#F4AEBD"/><ellipse cx="70" cy="64" rx="6" ry="4.5" fill="#F4AEBD"/>
+    <circle cx="40" cy="56" r="4.6" fill="#3A2A20"/><circle cx="60" cy="56" r="4.6" fill="#3A2A20"/>
+    <circle cx="41.5" cy="54.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="54.4" r="1.5" fill="#fff"/>
+    <path d="M50 62 l-3 3 h6 Z" fill="#3A2A20"/><path d="M50 65 v2.5" stroke="#8A4B2E" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <!-- friend: fennec fox (사막여우) -->
+  <symbol id="fennec" viewBox="0 0 100 118">
+    <g stroke="#C9A876" stroke-width="3" stroke-linejoin="round">
+      <path d="M64 96 Q95 98 96 72 Q95 60 85 62 Q92 74 84 87 Q76 95 62 92 Z" fill="#E3CFA2"/>
+      <path d="M86 62 Q95 60 94 73 Q86 73 82 68 Z" fill="#FBF6EA"/>
+      <path d="M22 46 L10 6 L46 30 Z" fill="#EAD6AE"/><path d="M78 46 L90 6 L54 30 Z" fill="#EAD6AE"/>
+      <ellipse cx="50" cy="99" rx="21" ry="15" fill="#EAD6AE"/>
+      <path d="M16 50 Q14 29 50 27 Q86 29 84 50 Q80 76 50 87 Q20 76 16 50 Z" fill="#F0DFBE"/>
+    </g>
+    <path d="M24 40 L16 14 L40 30 Z" fill="#F6E7CE"/><path d="M76 40 L84 14 L60 30 Z" fill="#F6E7CE"/>
+    <path d="M26 36 L21 18 L36 30 Z" fill="#EFB9A8"/><path d="M74 36 L79 18 L64 30 Z" fill="#EFB9A8"/>
+    <g stroke="#C9A876" stroke-width="3"><ellipse cx="30" cy="98" rx="6.5" ry="8" fill="#E3CFA2"/><ellipse cx="70" cy="98" rx="6.5" ry="8" fill="#E3CFA2"/></g>
+    <g stroke="#C9A876" stroke-width="2.5"><ellipse cx="42" cy="113" rx="6" ry="4.5" fill="#D8C08A"/><ellipse cx="58" cy="113" rx="6" ry="4.5" fill="#D8C08A"/></g>
+    <ellipse cx="50" cy="67" rx="16" ry="13" fill="#FBF6EA"/>
+    <ellipse cx="28" cy="66" rx="6" ry="4.5" fill="#F4C0B0"/><ellipse cx="72" cy="66" rx="6" ry="4.5" fill="#F4C0B0"/>
+    <circle cx="40" cy="58" r="4.8" fill="#3A2A20"/><circle cx="60" cy="58" r="4.8" fill="#3A2A20"/>
+    <circle cx="41.5" cy="56.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="56.4" r="1.5" fill="#fff"/>
+    <path d="M50 64 l-3 3 h6 Z" fill="#5A4436"/><path d="M50 67 v3" stroke="#B79A6E" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <!-- friend: panda (판다) -->
+  <symbol id="panda" viewBox="0 0 100 118">
+    <circle cx="24" cy="30" r="12" fill="#2E2E30" stroke="#1E1E20" stroke-width="2"/><circle cx="76" cy="30" r="12" fill="#2E2E30" stroke="#1E1E20" stroke-width="2"/>
+    <g stroke="#B8B0AB" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="50" cy="99" rx="23" ry="16" fill="#F7F5F0"/>
+      <ellipse cx="50" cy="56" rx="40" ry="33" fill="#F7F5F0"/>
+    </g>
+    <g stroke="#1E1E20" stroke-width="2"><ellipse cx="27" cy="96" rx="7" ry="10" fill="#2E2E30"/><ellipse cx="73" cy="96" rx="7" ry="10" fill="#2E2E30"/></g>
+    <g stroke="#1E1E20" stroke-width="2"><ellipse cx="40" cy="114" rx="7" ry="5" fill="#2E2E30"/><ellipse cx="60" cy="114" rx="7" ry="5" fill="#2E2E30"/></g>
+    <ellipse cx="38" cy="56" rx="7.5" ry="9.5" fill="#2E2E30" transform="rotate(-18 38 56)"/><ellipse cx="62" cy="56" rx="7.5" ry="9.5" fill="#2E2E30" transform="rotate(18 62 56)"/>
+    <ellipse cx="26" cy="67" rx="6" ry="4.5" fill="#F4C4CE"/><ellipse cx="74" cy="67" rx="6" ry="4.5" fill="#F4C4CE"/>
+    <circle cx="39" cy="57" r="3.4" fill="#fff"/><circle cx="61" cy="57" r="3.4" fill="#fff"/>
+    <circle cx="39" cy="57.6" r="2" fill="#2A2A2A"/><circle cx="61" cy="57.6" r="2" fill="#2A2A2A"/>
+    <path d="M50 63 l-3.5 3 h7 Z" fill="#2E2E30"/><path d="M50 66 v3" stroke="#2E2E30" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M50 69 q-3 2 -6 1 M50 69 q3 2 6 1" stroke="#2E2E30" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <!-- friend: harp seal pup (하프물범) -->
+  <symbol id="seal" viewBox="0 0 100 118">
+    <g stroke="#C9C4BC" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="22" cy="94" rx="10" ry="6" fill="#EDE9E2" transform="rotate(32 22 94)"/><ellipse cx="78" cy="94" rx="10" ry="6" fill="#EDE9E2" transform="rotate(-32 78 94)"/>
+      <ellipse cx="50" cy="86" rx="30" ry="28" fill="#FBFAF6"/>
+      <ellipse cx="50" cy="52" rx="32" ry="29" fill="#FBFAF6"/>
+    </g>
+    <path d="M40 112 Q50 118 60 112 Q54 106 50 106 Q46 106 40 112 Z" fill="#EDE9E2" stroke="#C9C4BC" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="28" cy="58" rx="6" ry="4.5" fill="#F7CAD4"/><ellipse cx="72" cy="58" rx="6" ry="4.5" fill="#F7CAD4"/>
+    <circle cx="39" cy="50" r="6" fill="#2A2622"/><circle cx="61" cy="50" r="6" fill="#2A2622"/>
+    <circle cx="41" cy="48" r="2" fill="#fff"/><circle cx="63" cy="48" r="2" fill="#fff"/>
+    <ellipse cx="50" cy="60" rx="4.2" ry="3.2" fill="#4A4038"/>
+    <g stroke="#C9C4BC" stroke-width="1.2"><path d="M42 62 L28 60 M42 64 L28 65 M58 62 L72 60 M58 64 L72 65"/></g>
+  </symbol>
+  <!-- friend: sea otter (해달) -->
+  <symbol id="otter" viewBox="0 0 100 118">
+    <path d="M60 96 Q92 100 95 116 Q96 119 90 117 Q88 105 72 100 Q64 96 56 98 Z" fill="#8A6244" stroke="#6E4E36" stroke-width="3" stroke-linejoin="round"/>
+    <g stroke="#6E4E36" stroke-width="3" stroke-linejoin="round">
+      <circle cx="26" cy="34" r="7" fill="#8A6244"/><circle cx="74" cy="34" r="7" fill="#8A6244"/>
+      <ellipse cx="50" cy="92" rx="24" ry="22" fill="#9C7350"/>
+      <ellipse cx="50" cy="54" rx="34" ry="30" fill="#A67C58"/>
+    </g>
+    <g stroke="#6E4E36" stroke-width="2.5"><ellipse cx="40" cy="113" rx="7" ry="5" fill="#6E4E36"/><ellipse cx="60" cy="113" rx="7" ry="5" fill="#6E4E36"/></g>
+    <g stroke="#6E4E36" stroke-width="2.5"><ellipse cx="44" cy="90" rx="5" ry="6" fill="#8A6244"/><ellipse cx="56" cy="90" rx="5" ry="6" fill="#8A6244"/></g>
+    <ellipse cx="50" cy="61" rx="20" ry="17" fill="#E8D3B8"/>
+    <ellipse cx="30" cy="60" rx="5.5" ry="4.5" fill="#F0B7A8"/><ellipse cx="70" cy="60" rx="5.5" ry="4.5" fill="#F0B7A8"/>
+    <circle cx="41" cy="54" r="4.4" fill="#3A2A20"/><circle cx="59" cy="54" r="4.4" fill="#3A2A20"/>
+    <circle cx="42.3" cy="52.6" r="1.4" fill="#fff"/><circle cx="60.3" cy="52.6" r="1.4" fill="#fff"/>
+    <ellipse cx="50" cy="62" rx="4.2" ry="3.2" fill="#4A3325"/>
+    <path d="M50 65 v2.5" stroke="#6E4E36" stroke-width="1.4" stroke-linecap="round"/>
+    <g stroke="#B79A6E" stroke-width="1.1"><path d="M44 63 L34 62 M56 63 L66 62"/></g>
   </symbol>
 
   <!-- accessories (drawn around origin, positioned with translate) -->
@@ -1249,7 +1341,7 @@
     <button data-v="diary" onclick="go('diary',this)"><span class="ni">📔</span>돌아보기</button>
   </nav>
 
-  <div class="ver-tag">v2.7</div>
+  <div class="ver-tag">v3.1</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -1943,9 +2035,14 @@ var CREATURES={
   turtle:{nm:'거북이',emoji:'🐢',sym:'turtle'},
   chameleon:{nm:'카멜레온',emoji:'🦎',sym:'chameleon'},
   kangaroo:{nm:'캥거루',emoji:'🦘',sym:'kangaroo'},
-  penguin:{nm:'펭귄',emoji:'🐧',sym:'penguin'}
+  penguin:{nm:'펭귄',emoji:'🐧',sym:'penguin'},
+  redpanda:{nm:'레서판다',emoji:'🦝',sym:'redpanda'},
+  fennec:{nm:'사막여우',emoji:'🦊',sym:'fennec'},
+  panda:{nm:'판다',emoji:'🐼',sym:'panda'},
+  seal:{nm:'하프물범',emoji:'🦭',sym:'seal'},
+  otter:{nm:'해달',emoji:'🦦',sym:'otter'}
 };
-var POOL=['chick','parrot','pigeon','peacock','fox','rabbit','turtle','chameleon','kangaroo','penguin'];
+var POOL=['chick','parrot','pigeon','peacock','fox','rabbit','turtle','chameleon','kangaroo','penguin','redpanda','fennec','panda','seal','otter'];
 var STAGES=['baby','juvenile','adult'];
 var STAGE_KO={baby:'아기',juvenile:'어린',adult:'다 자란'};
 var STAGE_W={baby:76,juvenile:104,adult:130};
@@ -1964,7 +2061,7 @@ function applyPetAnim(){
   var key=buddyKey||'koala';
   ['homePet','roomPet'].forEach(function(id){
     var el=document.getElementById(id); if(!el) return;
-    ['koala','chick','rabbit','parrot','pigeon','peacock','fox','turtle','chameleon','kangaroo','penguin'].forEach(function(k){ el.classList.remove('anim-'+k); });
+    ['koala','chick','rabbit','parrot','pigeon','peacock','fox','turtle','chameleon','kangaroo','penguin','redpanda','fennec','panda','seal','otter'].forEach(function(k){ el.classList.remove('anim-'+k); });
     el.classList.add('anim-'+key);
   });
 }
@@ -1979,7 +2076,7 @@ var ACC_DEFS={
   crown:{nm:'왕관',sym:'acc-crown',slot:'head-top'}
 };
 var ACC_ORDER=['ribbon','pin','bracelet','bowtie','necklace','crown'];
-var ACC_HEAD={koala:20,chick:28,parrot:24,pigeon:22,peacock:34,fox:22,rabbit:34,turtle:24,chameleon:24,kangaroo:34,penguin:24};
+var ACC_HEAD={koala:20,chick:28,parrot:24,pigeon:22,peacock:34,fox:22,rabbit:34,turtle:22,chameleon:24,kangaroo:30,penguin:24,redpanda:22,fennec:24,panda:24,seal:26,otter:26};
 function accPos(slot){
   var hy=ACC_HEAD[buddyKey||'koala']||22;
   if(slot==='head-top') return {x:50,y:hy-3};
@@ -2206,7 +2303,7 @@ function nestAction(){
     else toast('냠냠! 맛있게 먹었어요 🌾 ('+nest.growth+'%)');
   }
 }
-var DEX_LIST=['koala','chick','parrot','pigeon','peacock','fox','rabbit','turtle','chameleon','kangaroo','penguin'];
+var DEX_LIST=['koala','chick','parrot','pigeon','peacock','fox','rabbit','turtle','chameleon','kangaroo','penguin','redpanda','fennec','panda','seal','otter'];
 function dexSym(key){ return key==='koala'?'koala':CREATURES[key].sym; }
 function dexName(key){ return key==='koala'?'코알라':CREATURES[key].nm; }
 function isUnlocked(key){ return key==='koala' || hatched.has(key); }
