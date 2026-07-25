@@ -267,13 +267,16 @@
   .town > svg{display:block;width:100%;height:auto;}
   .town .ov{position:absolute;inset:0;pointer-events:none;}
   .town .ov span{position:absolute;transform:translate(-50%,-50%);line-height:1;}
+  .tanimal{pointer-events:auto;cursor:grab;touch-action:none;}
+  .tanimal svg{pointer-events:none;}
+  .tanimal.dragging{animation:none!important;z-index:9!important;cursor:grabbing;
+    filter:drop-shadow(0 9px 7px rgba(90,70,50,.32));}
   .town-pet{font-size:36px;animation:townbob 3s ease-in-out infinite;
     filter:drop-shadow(0 5px 3px rgba(90,70,50,.22));z-index:3;}
   @keyframes townbob{0%,100%{transform:translate(-50%,-50%);}50%{transform:translate(-50%,calc(-50% - 6px));}}
   .friend{font-size:26px;filter:drop-shadow(0 3px 2px rgba(90,70,50,.18));}
-  .friend.f1{animation:wander 6s ease-in-out infinite;}
-  .friend.f2{animation:wander 7.5s ease-in-out infinite reverse;}
-  @keyframes wander{0%,100%{transform:translate(-50%,-50%);}50%{transform:translate(calc(-50% + 16px),-50%);}}
+  .friend.f1{animation:townbob 3.4s ease-in-out infinite;}
+  .friend.f2{animation:townbob 4.1s ease-in-out infinite;}
   .item{font-size:26px;transform:translate(-50%,-50%) scale(0);opacity:0;
     transition:transform .45s cubic-bezier(.2,1.5,.4,1),opacity .3s;
     filter:drop-shadow(0 3px 2px rgba(90,70,50,.15));}
@@ -281,6 +284,17 @@
   .friend svg{display:block;width:48px;height:auto;}
   .item svg{display:block;width:30px;height:auto;}
   .town-cap{text-align:center;font-size:13px;color:var(--ink-soft);margin:11px 6px 0;line-height:1.45;}
+  .town-door{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);z-index:6;width:34px;height:34px;
+    display:flex;align-items:center;justify-content:center;font-size:19px;cursor:pointer;pointer-events:auto;
+    background:rgba(255,255,255,.85);border-radius:50%;box-shadow:0 2px 6px rgba(90,70,50,.25);
+    animation:townbob 2.4s ease-in-out infinite;}
+  .room-scene{position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--shadow);}
+  .room-scene > svg{display:block;width:100%;height:auto;}
+  .room-scene .ov{position:absolute;inset:0;pointer-events:none;}
+  .room-scene .ov span{position:absolute;transform:translate(-50%,-50%);line-height:1;}
+  .room-pet{position:absolute;left:50%;top:64%;transform:translate(-50%,-50%);z-index:5;
+    filter:drop-shadow(0 6px 4px rgba(90,70,50,.22));animation:townbob 3s ease-in-out infinite;}
+  .room-pet svg{display:block;width:100px;height:auto;}
   .house-g{display:none;}
   .town[data-house="1"] .h1,.town[data-house="2"] .h2,.town[data-house="3"] .h3{display:inline;}
   .tray-wrap{position:relative;}
@@ -915,6 +929,30 @@
     <circle cx="0" cy="3.4" r="2.1" fill="#FF9BB5" stroke="#E86A90" stroke-width="1"/>
   </g>
 
+  <!-- room furniture -->
+  <symbol id="it-rug" viewBox="0 0 60 30">
+    <ellipse cx="30" cy="15" rx="28" ry="12" fill="#EBC59A" stroke="#D9A66E" stroke-width="2"/>
+    <ellipse cx="30" cy="15" rx="20" ry="8" fill="none" stroke="#D9A66E" stroke-width="1.6"/>
+    <ellipse cx="30" cy="15" rx="11" ry="4.5" fill="#F2D9BC"/>
+  </symbol>
+  <symbol id="it-shelf" viewBox="0 0 40 46">
+    <rect x="6" y="4" width="28" height="40" rx="2" fill="#C89A66" stroke="#A97B4E" stroke-width="2"/>
+    <line x1="6" y1="18" x2="34" y2="18" stroke="#A97B4E" stroke-width="2"/><line x1="6" y1="31" x2="34" y2="31" stroke="#A97B4E" stroke-width="2"/>
+    <rect x="9" y="7" width="4" height="9" fill="#E86B7A"/><rect x="14" y="7" width="4" height="9" fill="#7FB6E0"/><rect x="19" y="7" width="4" height="9" fill="#F2C84C"/><rect x="25" y="8" width="6" height="8" rx="1" fill="#7FC8A0"/>
+    <rect x="9" y="20" width="4" height="9" fill="#F2A0BC"/><rect x="14" y="20" width="4" height="9" fill="#9FD3A0"/><rect x="20" y="21" width="7" height="8" rx="1" fill="#C9A0E0"/>
+  </symbol>
+  <symbol id="it-clock" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="15" fill="#FBF3E4" stroke="#C89A66" stroke-width="3"/>
+    <line x1="20" y1="20" x2="20" y2="10" stroke="#6B5B4E" stroke-width="2" stroke-linecap="round"/>
+    <line x1="20" y1="20" x2="27" y2="22" stroke="#6B5B4E" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="20" cy="20" r="1.6" fill="#6B5B4E"/>
+  </symbol>
+  <symbol id="it-frame" viewBox="0 0 40 34">
+    <rect x="5" y="4" width="30" height="26" rx="2" fill="#EAD9BE" stroke="#C89A66" stroke-width="3"/>
+    <path d="M9 26 L17 16 L23 22 L28 15 L31 26 Z" fill="#9FD3A0"/>
+    <circle cx="27" cy="11" r="2.4" fill="#F2C84C"/>
+  </symbol>
+
   <!-- shop gifts (placed in town) -->
   <symbol id="gift-teddy" viewBox="0 0 40 44">
     <g stroke="#8A5E3E" stroke-width="2.5" stroke-linejoin="round">
@@ -1184,8 +1222,10 @@
           </g>
         </svg>
         <div class="ov" id="townOv"></div>
+        <div class="town-door" id="townDoor" onclick="tryEnterRoom()" title="집 안(내 방) 들어가기">🚪</div>
       </div>
       <div class="town-cap" id="townCap">코야가 아담한 오두막에서 놀고 있어요 🌿</div>
+      <div style="text-align:center;font-size:11px;color:#9A897B;margin-top:3px">🖐️ 동물을 손으로 끌어 원하는 곳에 놓을 수 있어요</div>
 
       <div class="card" style="margin-top:14px">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
@@ -1200,6 +1240,36 @@
         <div class="tray-wrap"><div class="tray" id="tray"></div></div>
         <p style="font-size:12px;color:var(--ink-soft);margin:8px 2px 0;text-align:center;line-height:1.5">
           👉 옆으로 넘기면 아이템이 더 있어요<br>레벨이 오르면 🔒 자물쇠가 하나씩 열려요!
+        </p>
+      </div>
+      <button class="btn go" style="width:100%;margin-top:14px" onclick="tryEnterRoom()">🚪 집 안 (내 방) 들어가기</button>
+    </section>
+
+    <!-- ============ MY ROOM (집 안 / 내 방) ============ -->
+    <section class="view" id="view-room">
+      <div class="section-title" style="justify-content:space-between">
+        <span>🚪 <span id="roomTitle">나의 방</span></span>
+        <button class="edit-btn" onclick="exitRoom()">← 마을로</button>
+      </div>
+      <div class="room-scene" id="roomScene">
+        <svg viewBox="0 0 360 260" aria-label="내 방">
+          <rect width="360" height="182" fill="#F6E7CE"/>
+          <rect y="182" width="360" height="78" fill="#E4C089"/>
+          <rect y="176" width="360" height="9" fill="#CDA062"/>
+          <g opacity=".5" stroke="#D9AE72" stroke-width="1"><path d="M60 185 V258 M140 185 V258 M220 185 V258 M300 185 V258"/></g>
+          <rect x="232" y="34" width="96" height="82" rx="7" fill="#BFE3F5" stroke="#fff" stroke-width="7"/>
+          <line x1="280" y1="34" x2="280" y2="116" stroke="#fff" stroke-width="4"/><line x1="232" y1="75" x2="328" y2="75" stroke="#fff" stroke-width="4"/>
+          <circle cx="303" cy="57" r="10" fill="#FFE7A0"/><ellipse cx="256" cy="60" rx="12" ry="6" fill="#fff" opacity=".85"/>
+        </svg>
+        <div class="ov" id="roomOv"></div>
+        <span class="room-pet"><svg id="roomViewPet" class="koala" viewBox="0 0 100 118"><use href="#koala"/></svg></span>
+      </div>
+      <div class="town-cap">아늑한 내 방을 예쁘게 꾸며보세요 🛋️</div>
+      <div class="section-title">🛋️ 방 꾸미기</div>
+      <div class="card">
+        <div class="goods" id="roomTray"></div>
+        <p style="font-size:12px;color:var(--ink-soft);margin:10px 2px 0;text-align:center;line-height:1.5">
+          공부해서 모은 보석으로 가구를 놓아요. 레벨이 오르면 🔒 새 가구가 열려요!
         </p>
       </div>
     </section>
@@ -1229,7 +1299,8 @@
           💡 <b style="color:var(--ink)">모이는 공부로만 모여요</b><br>
           · 집중 타이머 1번 완료 → 🌾 +3<br>
           · 계획 1개 완료 → 🌾 +1<br>
-          모은 모이로 알을 품고 밥을 주며 천천히 키워요 🌱
+          모은 모이로 알을 품고 밥을 주며 천천히 키워요 🌱<br>
+          <b style="color:#5BB98B">동물은 하루에 조금씩만 자라요 — 계획 실천이 늘 우선이에요 📚</b>
         </div>
       </div>
 
@@ -1353,7 +1424,7 @@
     <button data-v="diary" onclick="go('diary',this)"><span class="ni">📔</span>돌아보기</button>
   </nav>
 
-  <div class="ver-tag">v3.4</div>
+  <div class="ver-tag">v3.8</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -1475,7 +1546,7 @@
 
 <script>
 // ---------- state ----------
-var state = { gems:0, rare:0, exp:0, feed:0, level:1, days:1, rareDay:'', planAwDay:'', planAwCnt:0 };
+var state = { gems:0, rare:0, exp:0, feed:0, level:1, days:1, rareDay:'', planAwDay:'', planAwCnt:0, nestDay:'', nestCount:0 };
 // 기본(고정) 계획 — 삭제되지 않고 매일 반복되며, 새 날엔 체크만 풀려요
 var DEFAULT_PLANS = [
   {t:"수학 문제집 2쪽 풀기", cat:"공부", emoji:"📝", color:"#D8ECFB", pomo:2, fixed:true},
@@ -2271,6 +2342,7 @@ setInterval(function(){
 // ---- town animals: only creatures I've raised / am raising ----
 var townResidents=['koala'];
 var TOWN_ANIMAL_POS=[{l:31,t:72,w:60},{l:60,t:78,w:48},{l:14,t:76,w:48},{l:76,t:70,w:46},{l:45,t:86,w:44},{l:89,t:80,w:42}];
+var townPos={}; // 아이가 드래그로 옮긴 동물 위치 (동물별 저장)
 function symOf(key){ return key==='koala'?'koala':CREATURES[key].sym; }
 function townActors(){
   var list=townResidents.slice();
@@ -2280,13 +2352,36 @@ function townActors(){
 function renderTownAnimals(){
   var ov=document.getElementById('townOv'); if(!ov) return;
   ov.querySelectorAll('.tanimal').forEach(function(n){n.remove();});
+  if(typeof updateTownDoor==='function') updateTownDoor();
   townActors().slice(0,TOWN_ANIMAL_POS.length).forEach(function(key,i){
-    var p=TOWN_ANIMAL_POS[i];
+    var d=TOWN_ANIMAL_POS[i], p=townPos[key]||d;
     var s=document.createElement('span');
     s.className='tanimal '+(i===0?'town-pet':'friend '+(i%2?'f1':'f2'));
+    s.setAttribute('data-key',key);
     s.style.left=p.l+'%'; s.style.top=p.t+'%';
-    s.innerHTML='<svg viewBox="0 0 100 118" style="width:'+p.w+'px;height:auto;display:block"><use href="#'+symOf(key)+'"/></svg>';
+    s.innerHTML='<svg viewBox="0 0 100 118" style="width:'+d.w+'px;height:auto;display:block"><use href="#'+symOf(key)+'"/></svg>';
+    bindTownDrag(s, key);
     ov.appendChild(s);
+  });
+}
+function bindTownDrag(el, key){
+  el.addEventListener('pointerdown', function(e){
+    var town=document.getElementById('town'); if(!town) return;
+    e.preventDefault();
+    var rect=town.getBoundingClientRect(), moved=false, sx=e.clientX, sy=e.clientY;
+    el.classList.add('dragging'); el._l=null;
+    function mv(ev){
+      if(Math.abs(ev.clientX-sx)>3||Math.abs(ev.clientY-sy)>3) moved=true;
+      var l=(ev.clientX-rect.left)/rect.width*100, t=(ev.clientY-rect.top)/rect.height*100;
+      l=Math.max(6,Math.min(94,l)); t=Math.max(28,Math.min(94,t));
+      el.style.left=l+'%'; el.style.top=t+'%'; el._l=l; el._t=t;
+    }
+    function up(){
+      document.removeEventListener('pointermove',mv); document.removeEventListener('pointerup',up);
+      el.classList.remove('dragging');
+      if(moved && el._l!=null){ townPos[key]={l:Math.round(el._l*10)/10, t:Math.round(el._t*10)/10}; save(); }
+    }
+    document.addEventListener('pointermove',mv); document.addEventListener('pointerup',up);
   });
 }
 
@@ -2305,6 +2400,77 @@ function renderTownGifts(){
     s.innerHTML='<svg viewBox="'+GIFT_VB[k]+'" style="width:'+g.w+'px;height:auto;display:block"><use href="#'+GIFT_SYM[k]+'"/></svg>';
     ov.appendChild(s);
   });
+}
+
+// ---------- 집 안 / 내 방 (60일 후 열림 + 방 꾸미기) ----------
+var ROOM_UNLOCK_DAY=60;
+var roomOwned=new Set();
+var roomItems=[
+  {key:'rrug',nm:'러그',sym:'it-rug',vb:'0 0 60 30',l:50,t:86,w:150,cost:25,reqLv:1,z:1},
+  {key:'rbed',nm:'침대',sym:'gift-bed',vb:'0 0 48 32',l:24,t:70,w:112,cost:40,reqLv:1,z:2},
+  {key:'rcushion',nm:'방석',sym:'gift-cushion',vb:'0 0 44 30',l:62,t:87,w:54,cost:24,reqLv:1,z:3},
+  {key:'rshelf',nm:'책장',sym:'it-shelf',vb:'0 0 40 46',l:87,t:46,w:56,cost:35,reqLv:2,z:2},
+  {key:'rlamp',nm:'램프',sym:'it-lamp',vb:'0 0 40 40',l:11,t:52,w:46,cost:30,reqLv:2,z:2},
+  {key:'rplant',nm:'화분',sym:'it-pot',vb:'0 0 40 40',l:91,t:72,w:44,cost:22,reqLv:2,z:3},
+  {key:'rteddy',nm:'곰인형',sym:'gift-teddy',vb:'0 0 40 44',l:68,t:79,w:44,cost:30,reqLv:3,z:3},
+  {key:'rframe',nm:'액자',sym:'it-frame',vb:'0 0 40 34',l:23,t:23,w:48,cost:26,reqLv:3,z:1},
+  {key:'rclock',nm:'시계',sym:'it-clock',vb:'0 0 40 40',l:42,t:19,w:38,cost:28,reqLv:4,z:1}
+];
+function roomUnlocked(){ return (state.days||1) >= ROOM_UNLOCK_DAY; }
+function updateTownDoor(){ var dr=document.getElementById('townDoor'); if(dr) dr.textContent=roomUnlocked()?'🚪':'🔒'; }
+function tryEnterRoom(){
+  if(!roomUnlocked()){
+    var left=ROOM_UNLOCK_DAY-(state.days||1);
+    showReward('🔒','아직 잠겨 있어요','내 방은 함께한 지 '+ROOM_UNLOCK_DAY+'일이 되면 열려요. 앞으로 '+left+'일! 매일 공부하며 기다려요 💗');
+    return;
+  }
+  enterRoom();
+}
+function enterRoom(){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  document.getElementById('view-room').classList.add('active');
+  document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('on');});
+  var tb=document.querySelector('.nav button[data-v="town"]'); if(tb) tb.classList.add('on');
+  renderRoom();
+  var sc=document.querySelector('.screen'); if(sc) sc.scrollTop=0;
+}
+function exitRoom(){
+  var tb=document.querySelector('.nav button[data-v="town"]');
+  if(typeof go==='function' && tb) go('town', tb);
+}
+function renderRoom(){
+  var pet=document.getElementById('roomViewPet');
+  if(pet){ var bd=currentBuddy(); pet.innerHTML='<use href="#'+bd.sym+'" xlink:href="#'+bd.sym+'"/>'+(typeof accUses==='function'?accUses():''); }
+  var rt=document.getElementById('roomTitle'); if(rt) rt.textContent=(petName||'나')+'의 방';
+  renderRoomOv(); renderRoomTray();
+}
+function renderRoomOv(){
+  var ov=document.getElementById('roomOv'); if(!ov) return; ov.innerHTML='';
+  roomItems.forEach(function(it){ if(!roomOwned.has(it.key)) return;
+    var s=document.createElement('span'); s.className='item show'; s.style.left=it.l+'%'; s.style.top=it.t+'%'; s.style.zIndex=it.z||2;
+    s.innerHTML='<svg viewBox="'+it.vb+'" style="width:'+it.w+'px;height:auto;display:block"><use href="#'+it.sym+'"/></svg>';
+    ov.appendChild(s);
+  });
+}
+function renderRoomTray(){
+  var box=document.getElementById('roomTray'); if(!box) return; box.innerHTML='';
+  roomItems.forEach(function(it){
+    var owned=roomOwned.has(it.key), locked=(state.level||1)<it.reqLv;
+    var el=document.createElement('div'); el.className='good'+((locked||owned)?' locked':'');
+    var btn= owned?'놓음 ✓':(locked?'🔒 Lv.'+it.reqLv:'놓기');
+    el.innerHTML='<div class="ic"><svg viewBox="'+it.vb+'" style="width:34px;height:26px;display:block;margin:0 auto"><use href="#'+it.sym+'"/></svg></div>'+
+      '<div class="nm">'+it.nm+'</div><div class="price">💎 '+it.cost+'</div>'+
+      '<button class="buy" onclick="buyRoomItem(\''+it.key+'\')">'+btn+'</button>';
+    box.appendChild(el);
+  });
+}
+function buyRoomItem(key){
+  var it=null; roomItems.forEach(function(x){ if(x.key===key) it=x; }); if(!it) return;
+  if(roomOwned.has(key)){ toast(it.nm+'은(는) 이미 방에 있어요 😊'); return; }
+  if((state.level||1)<it.reqLv){ toast('Lv.'+it.reqLv+'부터 놓을 수 있어요 🔒 공부해서 레벨을 올려요!'); return; }
+  if(state.gems<it.cost){ toast('보석이 부족해요 🥲 계획을 완료해봐요!'); return; }
+  state.gems-=it.cost; money(); roomOwned.add(key); renderRoom();
+  showReward('🛋️', it.nm+' 놓기 완료!', '내 방이 더 아늑해졌어요! 💗'); save();
 }
 
 function renderNest(){
@@ -2368,10 +2534,13 @@ function graduateNest(){
 }
 // growth is gated by 모이(feed), which is earned ONLY by studying
 var GAIN=20; // each feed advances 20% (5 feeds per stage)
+var DAILY_NEST_CAP=6; // 하루에 알 돌보기 최대 횟수 — 동물이 하루에 너무 많이 열리지 않도록(계획 실천이 늘 우선)
 function nestAction(){
   if(nest.stage==='adult'){ graduateNest(); return; }
+  if(state.nestDay!==todayKey()){ state.nestDay=todayKey(); state.nestCount=0; }
+  if(state.nestCount>=DAILY_NEST_CAP){ toast('오늘은 충분히 돌봤어요 🌙 동물은 하루에 조금씩 자라요. 내일 또 키워요 — 오늘은 공부 계획부터 챙겨요 📚'); return; }
   if(state.feed<=0){ toast('모이가 없어요 🥲 공부(집중 타이머·계획 완료)로 모이를 모아요!'); return; }
-  state.feed--; updateFeed(); nestPop();
+  state.feed--; state.nestCount++; updateFeed(); nestPop();
   if(nest.stage==='egg'){
     nest.hatch=Math.min(100,nest.hatch+GAIN);
     document.getElementById('nestBar').style.width=nest.hatch+'%';
@@ -2420,7 +2589,7 @@ function save(){
     state:state, petName:petName, houseLevel:houseLevel, buddyKey:buddyKey,
     owned:Array.from(ownedItems), gifts:Array.from(townGifts),
     ownedAcc:Array.from(ownedAcc), equipAcc:Array.from(equipAcc),
-    nest:nest, hatched:Array.from(hatched), residents:townResidents,
+    nest:nest, hatched:Array.from(hatched), residents:townResidents, townPos:townPos, roomOwned:Array.from(roomOwned),
     plans:plans.map(function(p){return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,done:p.done,awarded:!!p.awarded,bonus:!!p.bonus,fixed:!!p.fixed};}),
     week:week, weekAnchor:weekAnchor, diary:diary,
     journal:journal, planLog:planLog, dayMin:dayMin,
@@ -2443,6 +2612,8 @@ function load(){
     if(d.nest) nest=d.nest;
     if(d.hatched) hatched=new Set(d.hatched);
     if(d.residents) townResidents=d.residents;
+    if(d.townPos&&typeof d.townPos==='object') townPos=d.townPos;
+    if(d.roomOwned) roomOwned=new Set(d.roomOwned);
     if(Array.isArray(d.plans)){
       plans=d.plans.map(function(p){ return {t:p.t,cat:p.cat,emoji:p.emoji,color:p.color,pomo:p.pomo,bonus:!!p.bonus,fixed:!!p.fixed,done:!!p.done,awarded:!!p.awarded}; });
       sortPlans();
