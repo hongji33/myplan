@@ -178,11 +178,30 @@
 
   /* koala full-body character */
   .koala{display:inline-block;overflow:visible;}
-  .koala-home{width:132px;height:auto;animation:bob 3s ease-in-out infinite;
-    filter:drop-shadow(0 10px 7px rgba(120,90,60,.16));transition:transform .25s;}
-  .koala-home.studying{animation:study 1.5s ease-in-out infinite;}
-  .koala-room{width:150px;height:auto;animation:bob 3.4s ease-in-out infinite;
-    filter:drop-shadow(0 8px 6px rgba(120,90,60,.16));}
+  .koala-home{width:132px;height:auto;transform-origin:50% 92%;
+    filter:drop-shadow(0 10px 7px rgba(120,90,60,.16));transition:transform .25s;cursor:pointer;}
+  .koala-room{width:150px;height:auto;transform-origin:50% 92%;
+    filter:drop-shadow(0 8px 6px rgba(120,90,60,.16));cursor:pointer;}
+  /* 동물마다 다른 움직임 */
+  .anim-koala{animation:bob 3s ease-in-out infinite;}
+  .anim-chick{animation:hop 1s ease-in-out infinite;}
+  .anim-rabbit{animation:hop2 1.15s ease-in-out infinite;}
+  .anim-parrot{animation:flap 1.1s ease-in-out infinite;}
+  .anim-pigeon{animation:pbob .7s ease-in-out infinite;}
+  .anim-peacock{animation:sway 2.6s ease-in-out infinite;}
+  .anim-fox{animation:wag .85s ease-in-out infinite;}
+  .koala-home.studying,.koala-room.studying{animation:study 1.5s ease-in-out infinite;}
+  @keyframes hop{0%,55%,100%{transform:translateY(0) scaleY(1);}18%{transform:translateY(-2px) scaleY(.9);}42%{transform:translateY(-22px) scaleY(1.06);}}
+  @keyframes hop2{0%,50%,100%{transform:translateY(0) scaleY(1);}15%{transform:translateY(-3px) scaleY(.9);}35%{transform:translateY(-28px) scaleY(1.05);}}
+  @keyframes flap{0%,100%{transform:rotate(-6deg) translateY(0);}50%{transform:rotate(6deg) translateY(-5px);}}
+  @keyframes pbob{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+  @keyframes sway{0%,100%{transform:rotate(-3deg) scale(1);}50%{transform:rotate(3deg) scale(1.05);}}
+  @keyframes wag{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
+  .fheart{position:absolute;left:50%;bottom:70px;font-size:17px;pointer-events:none;z-index:6;
+    will-change:transform,opacity;animation:fheart 1.7s ease-out forwards;}
+  @keyframes fheart{0%{opacity:0;transform:translate(-50%,0) scale(.3) rotate(0deg);}
+    18%{opacity:1;}
+    100%{opacity:0;transform:translate(calc(-50% + var(--dx,0px)),-96px) scale(1.1) rotate(var(--rot,0deg));}}
   .koala-mini{width:42px;height:42px;}
   .koala-town{width:60px;height:auto;}
   .study-book{position:absolute;left:50%;bottom:20px;transform:translateX(-50%) translateY(6px);
@@ -276,7 +295,14 @@
   .dex .slot{aspect-ratio:1;border-radius:18px;background:var(--cream);display:flex;align-items:center;justify-content:center;
     font-size:30px;box-shadow:var(--shadow-sm);position:relative;}
   .dex .slot.lock{color:#D9CBBB;background:#F4ECE1;font-size:22px;}
+  .dex .slot{cursor:pointer;transition:transform .1s;}
+  .dex .slot:active{transform:scale(.93);}
   .dex .slot svg{width:42px;height:auto;}
+  .dex .slot.locked svg{filter:grayscale(1);opacity:.32;}
+  .dex .slot.locked{background:#F4ECE1;}
+  .dex .slot.current{outline:3px solid #9BE0B8;outline-offset:-3px;background:#EAF7EF;}
+  .dex .slot .dex-lock{position:absolute;bottom:3px;right:5px;font-size:13px;}
+  .dex .slot .dex-badge{position:absolute;top:2px;right:4px;font-size:13px;}
 
   /* shop */
   .shop-tabs{display:flex;gap:8px;margin-bottom:10px;}
@@ -451,15 +477,18 @@
   <!-- friend: fox -->
   <symbol id="fox" viewBox="0 0 100 118">
     <g stroke="#8A5A3C" stroke-width="3" stroke-linejoin="round">
-      <path d="M70 96 Q98 96 93 72 Q88 88 68 88 Z" fill="#E8935A"/>
       <ellipse cx="50" cy="99" rx="22" ry="16" fill="#E8935A"/>
       <path d="M18 46 L25 14 L47 34 Z" fill="#E8935A"/><path d="M82 46 L75 14 L53 34 Z" fill="#E8935A"/>
+      <path d="M23 31 L26 18 L32 28 Z" fill="#F3D0B6"/><path d="M77 31 L74 18 L68 28 Z" fill="#F3D0B6"/>
       <ellipse cx="50" cy="55" rx="42" ry="34" fill="#E8935A"/>
     </g>
-    <ellipse cx="88" cy="76" rx="6" ry="5" fill="#FBEEDD"/>
+    <g stroke="#8A5A3C" stroke-width="3" stroke-linejoin="round">
+      <path d="M72 82 Q96 82 94 102 Q92 114 81 110 Q90 102 82 94 Q77 85 71 88 Z" fill="#E8935A"/>
+    </g>
+    <g stroke="#8A5A3C" stroke-width="3" stroke-linejoin="round"><ellipse cx="28" cy="96" rx="7" ry="9" fill="#DE884E"/><ellipse cx="72" cy="96" rx="7" ry="9" fill="#DE884E"/></g>
+    <g stroke="#8A5A3C" stroke-width="2.5"><ellipse cx="41" cy="114" rx="6.5" ry="4.5" fill="#6E4B34"/><ellipse cx="59" cy="114" rx="6.5" ry="4.5" fill="#6E4B34"/></g>
     <ellipse cx="50" cy="103" rx="12" ry="9" fill="#FBEEDD"/>
     <path d="M50 49 Q29 53 32 72 Q40 86 50 86 Q60 86 68 72 Q71 53 50 49 Z" fill="#FBEEDD"/>
-    <path d="M26 38 L30 20 L40 32 Z" fill="#F3D0B6"/><path d="M74 38 L70 20 L60 32 Z" fill="#F3D0B6"/>
     <ellipse cx="27" cy="65" rx="7.5" ry="5.5" fill="#F4AEBD"/><ellipse cx="73" cy="65" rx="7.5" ry="5.5" fill="#F4AEBD"/>
     <circle cx="40" cy="58" r="4.6" fill="#4A3B33"/><circle cx="60" cy="58" r="4.6" fill="#4A3B33"/>
     <circle cx="41.5" cy="56.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="56.4" r="1.5" fill="#fff"/>
@@ -469,11 +498,13 @@
   <symbol id="rabbit" viewBox="0 0 100 118">
     <g stroke="#9A8C82" stroke-width="3" stroke-linejoin="round">
       <ellipse cx="37" cy="22" rx="8.5" ry="21" fill="#ECE6DE"/><ellipse cx="63" cy="22" rx="8.5" ry="21" fill="#ECE6DE"/>
+      <ellipse cx="37" cy="19" rx="3.4" ry="12" fill="#F6C9D4"/><ellipse cx="63" cy="19" rx="3.4" ry="12" fill="#F6C9D4"/>
       <ellipse cx="50" cy="99" rx="22" ry="16" fill="#ECE6DE"/>
       <ellipse cx="50" cy="57" rx="40" ry="33" fill="#ECE6DE"/>
     </g>
-    <ellipse cx="37" cy="24" rx="4" ry="13" fill="#F6C9D4"/><ellipse cx="63" cy="24" rx="4" ry="13" fill="#F6C9D4"/>
-    <ellipse cx="50" cy="103" rx="12" ry="9" fill="#FBF7F1"/>
+    <ellipse cx="50" cy="98" rx="11" ry="8" fill="#FBF7F1"/>
+    <g stroke="#9A8C82" stroke-width="3" stroke-linejoin="round"><ellipse cx="28" cy="96" rx="7" ry="9" fill="#E3DBD1"/><ellipse cx="72" cy="96" rx="7" ry="9" fill="#E3DBD1"/></g>
+    <g stroke="#9A8C82" stroke-width="2.5"><ellipse cx="41" cy="114" rx="7" ry="5" fill="#DED6CC"/><ellipse cx="59" cy="114" rx="7" ry="5" fill="#DED6CC"/></g>
     <ellipse cx="26" cy="67" rx="8" ry="5.5" fill="#F4AEBD"/><ellipse cx="74" cy="67" rx="8" ry="5.5" fill="#F4AEBD"/>
     <circle cx="38" cy="57" r="4.6" fill="#5A4B44"/><circle cx="62" cy="57" r="4.6" fill="#5A4B44"/>
     <circle cx="39.5" cy="55.4" r="1.5" fill="#fff"/><circle cx="63.5" cy="55.4" r="1.5" fill="#fff"/>
@@ -603,7 +634,8 @@
     <circle cx="40" cy="50" r="4.6" fill="#4A3B33"/><circle cx="60" cy="50" r="4.6" fill="#4A3B33"/>
     <circle cx="41.5" cy="48.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="48.4" r="1.5" fill="#fff"/>
     <path d="M43 57 Q50 53 57 57 Q55 67 50 70 Q45 67 43 57 Z" fill="#E8963E" stroke="#C97A2E" stroke-width="1.5" stroke-linejoin="round"/>
-    <g stroke="#E8963E" stroke-width="3" stroke-linecap="round"><path d="M44 107 v6"/><path d="M56 107 v6"/></g>
+    <g fill="none" stroke="#E8963E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M44 105 v8 M44 113 l-5 3 M44 113 l5 3"/><path d="M56 105 v8 M56 113 l-5 3 M56 113 l5 3"/></g>
   </symbol>
   <symbol id="bird-pigeon" viewBox="0 0 100 118">
     <g stroke="#6E7A8A" stroke-width="3" stroke-linejoin="round">
@@ -616,14 +648,17 @@
     <circle cx="40" cy="44" r="4.6" fill="#4A3B33"/><circle cx="60" cy="44" r="4.6" fill="#4A3B33"/>
     <circle cx="41.5" cy="42.4" r="1.5" fill="#fff"/><circle cx="61.5" cy="42.4" r="1.5" fill="#fff"/>
     <path d="M50 50 l-5.5 4.5 l5.5 3.5 l5.5 -3.5 Z" fill="#E8963E" stroke="#C97A2E" stroke-width="1.4" stroke-linejoin="round"/>
-    <g stroke="#E8788A" stroke-width="3" stroke-linecap="round"><path d="M44 105 v6"/><path d="M56 105 v6"/></g>
+    <g fill="none" stroke="#E8788A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M44 104 v8 M44 112 l-5 3 M44 112 l5 3"/><path d="M56 104 v8 M56 112 l-5 3 M56 112 l5 3"/></g>
   </symbol>
-  <symbol id="bird-peacock" viewBox="0 0 100 118">
-    <g stroke="#2E7DA8" stroke-width="2">
-      <path d="M50 84 Q22 70 16 44" fill="none"/><path d="M50 84 Q34 66 30 40" fill="none"/><path d="M50 84 Q50 60 50 34" fill="none"/><path d="M50 84 Q66 66 70 40" fill="none"/><path d="M50 84 Q78 70 84 44" fill="none"/>
+  <symbol id="bird-peacock" viewBox="-7 -5 114 125">
+    <g fill="none" stroke="#2E8B7A" stroke-width="2.8" stroke-linecap="round">
+      <path d="M50 96 Q4 78 2 40"/><path d="M50 96 Q16 66 14 26"/><path d="M50 96 Q33 54 32 15"/><path d="M50 96 Q50 52 50 10"/><path d="M50 96 Q67 54 68 15"/><path d="M50 96 Q84 66 86 26"/><path d="M50 96 Q96 78 98 40"/>
     </g>
-    <g><circle cx="16" cy="44" r="4.5" fill="#3B9BD6"/><circle cx="30" cy="40" r="4.5" fill="#3B9BD6"/><circle cx="50" cy="34" r="4.5" fill="#3B9BD6"/><circle cx="70" cy="40" r="4.5" fill="#3B9BD6"/><circle cx="84" cy="44" r="4.5" fill="#3B9BD6"/>
-       <circle cx="16" cy="44" r="2" fill="#F2C84C"/><circle cx="30" cy="40" r="2" fill="#F2C84C"/><circle cx="50" cy="34" r="2" fill="#F2C84C"/><circle cx="70" cy="40" r="2" fill="#F2C84C"/><circle cx="84" cy="44" r="2" fill="#F2C84C"/></g>
+    <g fill="#1FA98C"><circle cx="2" cy="40" r="7.6"/><circle cx="14" cy="26" r="7.6"/><circle cx="32" cy="15" r="7.6"/><circle cx="50" cy="10" r="7.6"/><circle cx="68" cy="15" r="7.6"/><circle cx="86" cy="26" r="7.6"/><circle cx="98" cy="40" r="7.6"/></g>
+    <g fill="#2E86C1"><circle cx="2" cy="40" r="5.3"/><circle cx="14" cy="26" r="5.3"/><circle cx="32" cy="15" r="5.3"/><circle cx="50" cy="10" r="5.3"/><circle cx="68" cy="15" r="5.3"/><circle cx="86" cy="26" r="5.3"/><circle cx="98" cy="40" r="5.3"/></g>
+    <g fill="#F2C84C"><circle cx="2" cy="40" r="3.2"/><circle cx="14" cy="26" r="3.2"/><circle cx="32" cy="15" r="3.2"/><circle cx="50" cy="10" r="3.2"/><circle cx="68" cy="15" r="3.2"/><circle cx="86" cy="26" r="3.2"/><circle cx="98" cy="40" r="3.2"/></g>
+    <g fill="#243B6B"><circle cx="2" cy="40" r="1.6"/><circle cx="14" cy="26" r="1.6"/><circle cx="32" cy="15" r="1.6"/><circle cx="50" cy="10" r="1.6"/><circle cx="68" cy="15" r="1.6"/><circle cx="86" cy="26" r="1.6"/><circle cx="98" cy="40" r="1.6"/></g>
     <g stroke="#245E86" stroke-width="3" stroke-linejoin="round">
       <ellipse cx="50" cy="88" rx="24" ry="22" fill="#2E86C1"/>
       <ellipse cx="50" cy="56" rx="28" ry="25" fill="#3B9BD6"/>
@@ -634,7 +669,8 @@
     <circle cx="41" cy="54" r="4.6" fill="#26313A"/><circle cx="59" cy="54" r="4.6" fill="#26313A"/>
     <circle cx="42.5" cy="52.4" r="1.5" fill="#fff"/><circle cx="60.5" cy="52.4" r="1.5" fill="#fff"/>
     <path d="M50 60 l-5 4 l5 3.5 l5 -3.5 Z" fill="#E8B84E" stroke="#C99A2E" stroke-width="1.4" stroke-linejoin="round"/>
-    <g stroke="#C99A2E" stroke-width="3" stroke-linecap="round"><path d="M44 108 v5"/><path d="M56 108 v5"/></g>
+    <g fill="none" stroke="#C99A2E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M44 106 v7 M44 113 l-5 3 M44 113 l5 3"/><path d="M56 106 v7 M56 113 l-5 3 M56 113 l5 3"/></g>
   </symbol>
 
   <!-- shop gifts (placed in town) -->
@@ -698,7 +734,7 @@
       <div class="name" id="petName">코야 <span style="font-size:12px;color:#9A897B">코알라 ✏️</span></div>
       <div class="lv" id="petLv">Lv.3 · 함께한 지 5일째</div>
     </div>
-    <div class="gems">
+    <div class="gems" onclick="openGemGuide()" style="cursor:pointer" title="보석 모으는 방법 보기">
       <div class="gem-pill">💎 <b id="gemCount">120</b></div>
       <div class="gem-pill">💚 <b id="rareCount">2</b></div>
     </div>
@@ -723,7 +759,7 @@
           <circle cx="26" cy="66" r="2.6" fill="#fff" opacity=".7"/><circle cx="150" cy="52" r="2.2" fill="#fff" opacity=".6"/>
         </svg>
         <div class="bubble stage-fg" id="petSpeech">주인님, 오늘도 같이 공부해요! 🌱</div>
-        <div class="stage-fg" style="position:relative;display:inline-block">
+        <div class="stage-fg" style="position:relative;display:inline-block" onclick="petReact()">
           <svg class="koala koala-home" id="homePet" viewBox="0 0 100 118"><use href="#koala"/></svg>
           <span class="study-book" id="studyBook">📖</span>
           <span class="pet-emote" id="petEmote">🌱</span>
@@ -969,17 +1005,10 @@
       </div>
       <div class="section-title">📖 나의 동물 도감</div>
       <div class="card">
-        <div class="dex">
-          <div class="slot"><svg viewBox="0 0 100 118"><use href="#koala"/></svg></div>
-          <div class="slot lock" id="dex-chick">🔒</div>
-          <div class="slot lock" id="dex-parrot">🔒</div>
-          <div class="slot lock" id="dex-pigeon">🔒</div>
-          <div class="slot lock" id="dex-peacock">🔒</div>
-          <div class="slot lock" id="dex-fox">🔒</div>
-          <div class="slot lock" id="dex-rabbit">🔒</div>
-        </div>
-        <p style="font-size:12px;color:#9A897B;text-align:center;margin:12px 0 0">
-          자물쇠(🔒)는 아직 못 만난 동물이에요. 알을 부화시켜 다 키우면 하나씩 열려요! <span id="dexCount">(1 / 7)</span>
+        <div class="dex" id="dexGrid"></div>
+        <p style="font-size:12px;color:#9A897B;text-align:center;margin:12px 0 0;line-height:1.5">
+          동물을 눌러 <b>대표 친구</b>로 정할 수 있어요 💗<br>
+          흐릿한 동물은 아직 못 만난 친구 — 알을 부화시키면 열려요! <span id="dexCount">(1 / 7)</span>
         </p>
       </div>
     </section>
@@ -1029,7 +1058,7 @@
     <button data-v="report" onclick="go('report',this)"><span class="ni">📊</span>리포트</button>
   </nav>
 
-  <div class="ver-tag">v1.9</div>
+  <div class="ver-tag">v2.2</div>
   <div class="toast" id="toast"></div>
   <div class="reward-pop" id="namePop">
     <div class="reward-card" onclick="event.stopPropagation()">
@@ -1072,6 +1101,30 @@
       <div style="font-size:19px;margin:8px 0 4px" id="rewardTitle">집중 성공!</div>
       <div style="font-size:14px;color:#9A897B" id="rewardMsg">보석을 받았어요</div>
       <button class="btn go" style="margin-top:16px" onclick="event.stopPropagation();closeReward()">좋아요 🎉</button>
+    </div>
+  </div>
+  <div class="reward-pop" id="gemPop" onclick="closeGemGuide()">
+    <div class="reward-card" onclick="event.stopPropagation()" style="max-width:340px">
+      <div class="big">💎💚</div>
+      <div style="font-size:18px;margin:6px 0 2px">보석 모으는 방법</div>
+      <div style="font-size:12px;color:#9A897B;margin-bottom:12px">공부하면 보석이 쌓여요!</div>
+      <div style="text-align:left;background:#F3FAF4;border-radius:16px;padding:13px 15px;margin-bottom:10px">
+        <div style="font-weight:700;color:#3E8E5E;font-size:14px;margin-bottom:7px">💎 일반 보석</div>
+        <div style="font-size:13px;line-height:1.95;color:#5B5348">
+          ✔️ 오늘의 꿈 1개 완료 &nbsp;→&nbsp; <b>💎 +15</b><br>
+          🍅 집중 타이머 끝까지 완료 &nbsp;→&nbsp; <b>💎 +30</b><br>
+          ⭐ 보완 미션 완료 &nbsp;→&nbsp; <b>💎 +10</b>
+        </div>
+      </div>
+      <div style="text-align:left;background:#FDF3F7;border-radius:16px;padding:13px 15px">
+        <div style="font-weight:700;color:#C56C8E;font-size:14px;margin-bottom:7px">💚 희귀 보석 <span style="font-size:11px;color:#B89AA5">(귀한 보석이에요)</span></div>
+        <div style="font-size:13px;line-height:1.95;color:#5B5348">
+          ⭐ 어제 못한 걸 오늘 해내면 &nbsp;→&nbsp; <b>💚 +1</b><br>
+          🌟 오늘의 꿈을 <b>하나도 빠짐없이</b> 모두 완료 &nbsp;→&nbsp; <b>💚 +1</b>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#9A897B;margin-top:11px;line-height:1.6">💡 모은 보석으로 <b>마을 꾸미기</b>와 <b>선물</b>을 살 수 있어요.</div>
+      <button class="btn go" style="margin-top:15px;width:100%" onclick="closeGemGuide()">알겠어요 👍</button>
     </div>
   </div>
 </div>
@@ -1195,6 +1248,16 @@ function togglePlan(i){
       toast('보완 미션 완료! 💚 희귀 보석 +1, 🌾 +1'); }
     else { state.gems+=15; money(); earnFeed(1); toast('잘했어요! 💎 +15, 🌾 +1'); }
     pulsePet(); addExp(6);
+    checkAllPlansDone();
+  }
+}
+function checkAllPlansDone(){
+  if(!plans.length) return;
+  var allDone=plans.every(function(p){ return p.done; });
+  if(allDone && state.rareDay!==todayKey()){
+    state.rareDay=todayKey();
+    state.rare+=1; money(); save();
+    showReward('🌟','오늘의 꿈 모두 완료!','정말 대단해요! 💚 희귀 보석 +1을 받았어요 ✨');
   }
 }
 
@@ -1370,6 +1433,8 @@ function showReward(ic,title,msg){
   document.getElementById('rewardPop').classList.add('show');
 }
 function closeReward(){ document.getElementById('rewardPop').classList.remove('show'); }
+function openGemGuide(){ document.getElementById('gemPop').classList.add('show'); }
+function closeGemGuide(){ document.getElementById('gemPop').classList.remove('show'); }
 function pulsePet(){ ['homePet','roomPet'].forEach(function(id){ var p=document.getElementById(id);
   p.style.transform='scale(1.15)'; setTimeout(function(){p.style.transform='';},250); }); }
 
@@ -1501,13 +1566,47 @@ function currentBuddy(){
   return {sym:CREATURES[buddyKey].sym, nm:CREATURES[buddyKey].nm};
 }
 function setUseHref(el,sym){ if(!el) return; el.innerHTML='<use href="#'+sym+'" xlink:href="#'+sym+'"/>'; }
+function applyPetAnim(){
+  var key=buddyKey||'koala';
+  ['homePet','roomPet'].forEach(function(id){
+    var el=document.getElementById(id); if(!el) return;
+    ['koala','chick','rabbit','parrot','pigeon','peacock','fox'].forEach(function(k){ el.classList.remove('anim-'+k); });
+    el.classList.add('anim-'+key);
+  });
+}
 function setBuddy(){
   var bd=currentBuddy();
   setUseHref(document.getElementById('homePet'), bd.sym);
   setUseHref(document.getElementById('roomPet'), bd.sym);
   setUseHref(document.querySelector('#miniPet svg'), bd.sym);
+  applyPetAnim();
   applyName();
 }
+// ---------- 하트 효과 & 쓰다듬기 ----------
+function spawnHearts(n){
+  var stage=document.querySelector('#view-home .stage'); if(!stage) return;
+  var kinds=['💗','💕','🩷','💖'];
+  for(var i=0;i<n;i++){(function(k){
+    var h=document.createElement('span'); h.className='fheart';
+    h.textContent=kinds[Math.floor(Math.random()*kinds.length)];
+    h.style.setProperty('--dx',(Math.round(Math.random()*80)-40)+'px');
+    h.style.setProperty('--rot',(Math.round(Math.random()*60)-30)+'deg');
+    h.style.left=(42+Math.random()*16)+'%';
+    h.style.fontSize=(13+Math.round(Math.random()*8))+'px';
+    h.style.animationDelay=(k*0.09)+'s';
+    stage.appendChild(h);
+    setTimeout(function(){ if(h.parentNode) h.parentNode.removeChild(h); },1900+k*90);
+  })(i);}
+}
+function petReact(){
+  spawnHearts(7);
+  pulsePet();
+  if(!running){ mood='happy'; renderMood(); }
+}
+setInterval(function(){
+  var v=document.getElementById('view-home');
+  if(v && v.classList.contains('active') && !document.hidden) spawnHearts(1);
+}, 3200);
 
 // ---- town animals: only creatures I've raised / am raising ----
 var townResidents=['koala'];
@@ -1620,12 +1719,29 @@ function nestAction(){
     else toast('냠냠! 맛있게 먹었어요 🌾 ('+nest.growth+'%)');
   }
 }
-function unlockDex(key){
-  var slot=document.getElementById('dex-'+key); if(!slot) return;
-  slot.classList.remove('lock');
-  slot.innerHTML='<svg viewBox="0 0 100 118"><use href="#'+CREATURES[key].sym+'"/></svg>';
-  var n=1+hatched.size;
-  document.getElementById('dexCount').textContent='('+n+' / 7)';
+var DEX_LIST=['koala','chick','parrot','pigeon','peacock','fox','rabbit'];
+function dexSym(key){ return key==='koala'?'koala':CREATURES[key].sym; }
+function dexName(key){ return key==='koala'?'코알라':CREATURES[key].nm; }
+function isUnlocked(key){ return key==='koala' || hatched.has(key); }
+function renderDex(){
+  var g=document.getElementById('dexGrid'); if(!g) return; g.innerHTML='';
+  DEX_LIST.forEach(function(key){
+    var un=isUnlocked(key), cur=(buddyKey===key);
+    var d=document.createElement('div');
+    d.className='slot'+(un?'':' locked')+(cur?' current':'');
+    d.onclick=function(){ pickBuddy(key); };
+    d.innerHTML='<svg viewBox="0 0 100 118"><use href="#'+dexSym(key)+'"/></svg>'+
+      (un?'':'<span class="dex-lock">🔒</span>')+(cur?'<span class="dex-badge">💗</span>':'');
+    g.appendChild(d);
+  });
+  var n=1+hatched.size, dc=document.getElementById('dexCount'); if(dc) dc.textContent='('+n+' / 7)';
+}
+function unlockDex(key){ renderDex(); }
+function pickBuddy(key){
+  if(!isUnlocked(key)){ toast('아직 못 만난 동물이에요 🔒 알을 부화시켜 만나요! 🥚'); return; }
+  if(buddyKey===key){ toast(dexName(key)+'가 이미 대표 친구예요 💗'); return; }
+  buddyKey=key; setBuddy(); renderTownAnimals(); renderDex(); save();
+  toast(dexName(key)+'을(를) 대표 친구로 정했어요! 💗');
 }
 
 // ---------- save / load (각자 폰에 자기 진행상황 저장) ----------
@@ -1706,7 +1822,7 @@ load(); sortPlans();
 renderPlans(); paint(); money(); updateExp(); renderChart();
 buildOverlay(); setHouse(); renderTray(); renderShop(); renderNest();
 setBuddy(); renderTownAnimals(); renderTownGifts(); updateLevel(); renderMood();
-hatched.forEach(function(k){ unlockDex(k); });
+renderDex();
 if(_newDay) setTimeout(function(){ toast('새로운 하루예요! 🌅 오늘의 꿈 리스트가 새로 시작됐어요'); }, 700);
 
 // register service worker (앱 설치 + 오프라인 실행) — only works over http/https, not local file
